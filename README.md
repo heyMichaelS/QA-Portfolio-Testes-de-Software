@@ -140,12 +140,22 @@ describe('Meu Primeiro Teste', () => {
 });
 ```
 
+🎯 Conclusão
+Agora você tem o Cypress instalado e configurado no seu projeto! 🚀 Você pode explorar mais funcionalidades como:
+
+Uso de comandos customizados (cypress/support/commands.js)
+Configuração de variáveis de ambiente
+Integração com CI/CD
+Relatórios de testes
+Para mais detalhes, consulte a [documentação oficial.](https://docs.cypress.io/app/get-started/why-cypress)
+
 # 📁 Abaixo está projetos que fiz com cypress onde coloquei em prática os ensinamentos do teste nesse framework.<br>
 
 * [Projeto 1° - Cypress](https://github.com/heyMichaelS/cypress_pratica)
 * [Projeto 2° - Cypress](https://github.com/heyMichaelS/cypress-auth-project)
 * [Projeto 3° - Cypress](https://github.com/heyMichaelS/cypress_api/tree/master)
-* [Projeto 4° - Cypress](https://github.com/heyMichaelS/cypress_automacao_web)  
+* [Projeto 4° - Cypress](https://github.com/heyMichaelS/cypress_automacao_web)
+* [Projeto 5° - Cypress](https://github.com/heyMichaelS/cypress_bdd)
 </details>
 
 <details>
@@ -157,9 +167,181 @@ describe('Meu Primeiro Teste', () => {
 
 <details>
 <summary>Codeceptjs</summary>
-   <br>
-  
-* Codeceptjs
+
+<br>
+🚀 Instalação e Configuração do CodeceptJS para Testes de API
+O CodeceptJS é um framework moderno para automação de testes end-to-end, suportando diversos drivers como Playwright, WebDriver, Puppeteer e TestCafe. Além disso, permite a execução de testes de API, tornando-se uma ferramenta versátil para diferentes cenários de testes.
+<br>
+
+🛠️ Pré-requisitos
+Antes de instalar o CodeceptJS, verifique se possui os seguintes requisitos:
+
+✅ Node.js (Versão recomendada: LTS) → [Baixar aqui](https://nodejs.org/pt/download) <br>
+✅ Gerenciador de Pacotes (npm ou yarn) (já vem com o Node.js) <br>
+✅ Git (opcional, mas recomendado) → [Baixar aqui](https://git-scm.com/downloads) <br>
+
+<br>
+
+# 🏗️ 1. Criando um Novo Projeto
+Se ainda não tiver um projeto Node.js, crie um diretório e inicialize o projeto:
+
+```
+mkdir meu-projeto-codecept
+cd meu-projeto-codecept
+npm init -y
+```
+Isso criará um arquivo package.json básico para gerenciar as dependências.
+
+# 📦 2. Instalando o CodeceptJS
+🔹 Opção 1: Instalação via npm (Recomendada)
+
+```
+npm install codeceptjs --save-dev
+```
+# ⚙️ 3. Inicializando o CodeceptJS
+
+```
+npx codeceptjs init
+```
+🔹 Durante a configuração interativa, o CodeceptJS fará algumas perguntas sobre o ambiente de testes, como:
+
+* Qual helper usar? (Selecione REST para testes de API) <br>
+* Onde salvar os testes? (Padrão: ./tests) <br>
+* Qual formato de saída do relatório? (Escolha um, como Mocha) <br>
+🔹 Isso criará automaticamente o arquivo de configuração codecept.conf.js. <br>
+
+
+# 🔧 4. Configurando o CodeceptJS para Testes de API
+
+🔹 Edite o arquivo codecept.conf.js para incluir a configuração de API Testing com REST:
+
+📄 Arquivo: codecept.conf.js
+
+```
+const { setHeadlessWhen } = require('@codeceptjs/configure');
+
+setHeadlessWhen(process.env.HEADLESS);
+
+exports.config = {
+  tests: './tests/api/*_test.js',  // Define onde os testes serão salvos
+  output: './output',              // Pasta de saída para logs e screenshots
+  helpers: {
+    REST: {                        // Ativa o helper REST para testes de API
+      endpoint: 'https://jsonplaceholder.typicode.com',  // URL base da API
+      onRequest: (request) => {
+        request.headers.auth = 'Bearer token_aqui';  // Adiciona autenticação (se necessário)
+      }
+    }
+  },
+  include: {},
+  bootstrap: null,
+  mocha: {},
+  name: 'meu-projeto-codecept'
+};
+```
+⚠️ **Atenção:**  A configuração pode ter diferentes modificações dependendo do projeto acima é somente uma base de exemplo.
+
+# 🧪 5. Criando um Teste de API
+🔹 Agora, crie um teste simples dentro da pasta tests/api/:
+
+📄 Arquivo: tests/api/users_test.js
+
+```
+Feature('Users API');
+
+Scenario('Deve buscar a lista de usuários', async ({ I }) => {
+  const response = await I.sendGetRequest('/users');
+
+  // Verifica se a resposta tem status 200
+  I.seeResponseCodeIs(200);
+
+  // Valida se a resposta contém uma lista de usuários
+  I.seeResponseContainsJson([{ id: 1 }]);
+});
+
+Scenario('Deve criar um novo usuário', async ({ I }) => {
+  const response = await I.sendPostRequest('/users', {
+    name: 'João Silva',
+    username: 'joaosilva',
+    email: 'joao@email.com'
+  });
+
+  // Verifica se o status de resposta é 201 (Criado)
+  I.seeResponseCodeIs(201);
+
+  // Valida se o nome do usuário criado está na resposta
+  I.seeResponseContainsJson({ name: 'João Silva' });
+});
+```
+# ▶️ 6. Executando os Testes
+🔹Para rodar todos os testes
+
+```
+npx codeceptjs run --steps
+```
+🔹 Para rodar um teste específico
+```
+npx codeceptjs run --grep "@@sucesso"
+```
+
+🔹 Estrutura Exemplo do Teste Abaixo
+
+```
+Feature('login');
+
+Scenario('Login com sucesso ', async ({ I }) => {
+
+    I.amOnPage('https://automationpratice.com.br/')
+    I.click('Login')
+    I.waitForText('Login', 15)
+    I.fillField('#user', 'teste@teste.com')
+    I.fillField('#password', '12345678')
+    I.click('#btnLogin')
+    I.waitForText('Login realizado', 3)
+
+}).tag('@sucesso')
+
+```
+
+🔹Para rodar os testes em modo interativo
+
+```
+npx codeceptjs shell
+```
+A opção --steps exibe o passo a passo da execução.
+
+# 📊 7. Gerando Relatórios de Testes
+
+Para gerar relatórios HTML após a execução, instale o pacote mocha-multi-reporters
+```
+npm install mocha-multi-reporters --save-dev
+```
+E adicione a seguinte configuração no codecept.conf.js:
+
+```
+mocha: {
+  reporterOptions: {
+    reportDir: "output"
+  }
+}
+```
+
+# 🎯 Conclusão
+Agora você tem um ambiente configurado para testes de API com CodeceptJS! 🚀
+
+✅ Instalação e configuração do framework
+✅ Criação de testes automatizados de API
+✅ Execução e geração de relatórios
+
+📌 Para mais detalhes, consulte a [documentação oficial.](https://codecept.io/api/#api-testing)
+Agora, após executar os testes, o relatório estará disponível na pasta output.
+
+# 📁 Abaixo está projetos que fiz com cypress onde coloquei em prática os ensinamentos do teste nesse framework.<br>
+
+* [Projeto 1º - CodeceptJS](https://github.com/heyMichaelS/CodeceptJs_Projeto_Web/tree/master)
+* [Projeto 2º - CodeceptJS](https://github.com/heyMichaelS/Appium_codeceptjs)
+* [Projeto 3º - CodeceptJS]()
+
 </details>
 
 <details>
