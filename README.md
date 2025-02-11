@@ -17,14 +17,14 @@
 ## Repositório
 
 <details>
-<summary>Manual-tests</summary>
+<summary>Manual-tests(🚧 Em Construção)</summary>
 <br>
 
 *  Testes manuais (documentação, casos de teste, checklist, relatórios)
 </details>
 
 <details>
-<summary>API-tests</summary>
+<summary>API-tests(🚧 Em Construção)</summary>
 <br>
 
 *  (Testes de API com Postman, Insomnia e automação)
@@ -149,7 +149,7 @@ Integração com CI/CD
 Relatórios de testes
 Para mais detalhes, consulte a [documentação oficial.](https://docs.cypress.io/app/get-started/why-cypress)
 
-# 📁 Abaixo está projetos que fiz com cypress onde coloquei em prática os ensinamentos do teste nesse framework.<br>
+# 📁 Abaixo está projetos que fiz com cypress onde coloquei em prática os ensinamentos de teste nesse framework.<br>
 
 * [Projeto 1° - Cypress](https://github.com/heyMichaelS/cypress_pratica)
 * [Projeto 2° - Cypress](https://github.com/heyMichaelS/cypress-auth-project)
@@ -161,8 +161,107 @@ Para mais detalhes, consulte a [documentação oficial.](https://docs.cypress.io
 <details>
 <summary>Playwright</summary>
    <br>
+🎭 Playwright - Automação de Testes Moderna
+O Playwright é um framework de automação de testes de código aberto, desenvolvido pela Microsoft, que permite testar aplicativos da web em múltiplos navegadores (Chromium, Firefox e WebKit) de forma rápida e confiável. Ele suporta testes headless e com interface gráfica, além de oferecer APIs poderosas para interagir com elementos, simular dispositivos móveis, capturar screenshots e muito mais.
+
+ <br>
+  <br>
+
+🔹 Principais recursos do Playwright:  <br>
+✅ Suporte a múltiplos navegadores: Chromium, Firefox e WebKit <br>
+✅ Execução paralela de testes para maior desempenho  <br>
+✅ Automação confiável com controle avançado de rede e interceptação de requisições  <br>
+✅ Testes de API integrados, permitindo validar backends   <br>
+✅ Suporte a linguagens modernas como JavaScript, TypeScript, Python, Java e C#  <br>
+✅ Simulação de dispositivos móveis e configurações avançadas  <br>
+
+Com o Playwright, é possível criar testes robustos e escaláveis para validar a experiência do usuário em diferentes cenários, garantindo maior qualidade e confiabilidade no desenvolvimento de aplicações web. 🚀
+
+🎭 Tutorial de Instalação e Configuração do Playwright
+O Playwright é um framework moderno para automação de testes, desenvolvido pela Microsoft. Ele permite testar aplicativos da web em múltiplos navegadores (Chromium, Firefox e WebKit), garantindo confiabilidade, velocidade e flexibilidade.
+
+
+🛠️ 1. Pré-requisitos
+Antes de instalar o Playwright, certifique-se de que possui os seguintes requisitos:
+
+✅ Node.js (Versão recomendada: LTS) → [Baixar aqui](https://nodejs.org/pt/download) <br>
+✅ Gerenciador de pacotes (npm, yarn ou pnpm)) <br>
+✅ Git (opcional, mas recomendado) → [Baixar aqui](https://git-scm.com/downloads)  <br>
+
+
+📦 2. Criando um Novo Projeto
+Se ainda não tiver um projeto Node.js, crie um diretório e inicialize o projeto:
+
+```
+mkdir meu-projeto-playwright
+cd meu-projeto-playwright
+```
+🔹 Isso criará um arquivo package.json para gerenciar as dependências.
+
+📥 3. Instalando o Playwright  <br>
+🔹 Opção 1: Instalação via npm (Recomendada) <br>
+```
+npm init playwright@latest
+```
+📝 4. Criando um Teste Automatizado
+Agora, crie um arquivo de teste dentro da pasta tests/:
+
+📄 Arquivo: tests/example.test.js
+
+```
+import { test, expect } from '@playwright/test';
+
+test('Verificar título da página', async ({ page }) => {
+  await page.goto('https://playwright.dev/'); // Abre o site
+  const title = await page.title(); // Obtém o título da página
+  expect(title).toBe('Fast and reliable end-to-end testing for modern web apps | Playwright'); // Valida o título
+});
+
+```
+▶️ 6. Executando os Testes
+* Para rodar `todos os testes:`
   
-* Playwright
+```
+npx playwright test
+```
+
+Para rodar um `teste específico:`
+```
+npx playwright test tests/example.test.js
+```
+
+Para rodar os testes `com interface gráfica (UI Mode):`
+```
+npx playwright test --ui
+```
+
+Para rodar os testes `em modo headless (sem interface gráfica):`
+```
+npx playwright test --headless
+```
+📊 7. Gerando Relatórios de Teste
+O Playwright inclui suporte nativo para relatórios de teste. Após a execução, os resultados ficam armazenados na pasta playwright-report/.
+
+Para abrir o relatório interativo, use:
+```
+npx playwright show-report
+```
+🎯 Conclusão
+Agora você tem um ambiente configurado para automação de testes com Playwright! 🚀
+
+✅ Instalação e configuração
+✅ Criação de testes automatizados
+✅ Execução e geração de relatórios
+  
+📌 Para mais detalhes, consulte a [documentação oficial.](https://playwright.dev/docs/intro)
+
+# 📁 Abaixo está projetos que fiz com cypress onde coloquei em prática os ensinamentos de teste nesse framework.<br>
+
+* [Projeto 1° - Playwright](https://github.com/heyMichaelS/automacao_web_playwright)
+* [Projeto 2° - Playwright](https://github.com/heyMichaelS/playwright_api)
+
+
+
 </details>
 
 <details>
@@ -336,7 +435,7 @@ Agora você tem um ambiente configurado para testes de API com CodeceptJS! 🚀
 📌 Para mais detalhes, consulte a [documentação oficial.](https://codecept.io/api/#api-testing)
 Agora, após executar os testes, o relatório estará disponível na pasta output.
 
-# 📁 Abaixo está projetos que fiz com cypress onde coloquei em prática os ensinamentos do teste nesse framework.<br>
+# 📁 Abaixo está projetos que fiz com cypress onde coloquei em prática os ensinamentos de teste nesse framework.<br>
 
 * [Projeto 1º - CodeceptJS](https://github.com/heyMichaelS/CodeceptJs_Projeto_Web/tree/master)
 * [Projeto 2º - CodeceptJS](https://github.com/heyMichaelS/Appium_codeceptjs)
@@ -351,16 +450,134 @@ Agora, após executar os testes, o relatório estará disponível na pasta outpu
 </details>
   
 <details>
-<summary>Cucumber-Gherkin</summary>
-      <br>
-* Cucumber-Gherkin
+<summary>Supertest</summary>
+
+🚀 SuperTest - Testes de API Simples e Eficientes
+O SuperTest é uma biblioteca para testes de API em Node.js, projetada para facilitar a verificação de endpoints REST e GraphQL. Ele se integra facilmente com frameworks como Express, Koa e outros, permitindo testar requisições HTTP de maneira simples e intuitiva.
+
+🔹 Principais recursos do SuperTest:  <br>
+✅ Facilidade de uso – Sintaxe intuitiva baseada em superagent  <br>
+✅ Suporte a testes assíncronos com Promises e async/await  <br>
+✅ Integração com Jest, Mocha, Chai e outros frameworks de teste  <br>
+✅ Validação de status, cabeçalhos e respostas JSON  <br>
+✅ Execução rápida de testes sem precisar iniciar um servidor manualmente <br>
+
+Com o SuperTest, é possível criar testes automatizados eficientes para garantir a qualidade e a confiabilidade de APIs. 🚀
+
+🛠️ Tutorial de Instalação e Configuração do SuperTest
+1. Pré-requisitos
+Antes de instalar o SuperTest, certifique-se de que possui os seguintes requisitos:
+
+
+
+📥 2. Criando um Novo Projeto
+Se ainda não tiver um projeto Node.js, crie um diretório e inicialize o projeto:
+
+```
+mkdir meu-projeto-supertest
+cd meu-projeto-supertest
+```
+
+📦 3. Instalando o SuperTest
+🔹 Opção 1: Instalação via npm (Recomendada)
+```
+npm install jest supertest
+```
+⚙️ 4. Criando um Servidor para Teste
+Para exemplificar, vamos criar uma API simples usando Express:
+📄 Arquivo: server.js
+
+```
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+
+app.get('/ping', (req, res) => {
+  res.status(200).json({ message: 'pong' });
+});
+
+app.post('/echo', (req, res) => {
+  res.status(201).json({ data: req.body });
+});
+
+module.exports = app;
+
+```
+
+📝 5. Criando Testes com SuperTest
+Agora, crie um arquivo para testar a API:
+
+📄 Arquivo: tests/api.test.js
+
+```
+const request = require('supertest');
+const app = require('../server');
+
+describe('Testes da API', () => {
+  test('Deve retornar pong ao acessar /ping', async () => {
+    const response = await request(app).get('/ping');
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({ message: 'pong' });
+  });
+
+  test('Deve retornar os dados enviados via POST em /echo', async () => {
+    const payload = { nome: 'QA Tester' };
+    const response = await request(app).post('/echo').send(payload);
+    
+    expect(response.status).toBe(201);
+    expect(response.body).toEqual({ data: payload });
+  });
+});
+
+```
+
+▶️ 6. Executando os Testes
+Se estiver usando Jest, adicione o seguinte script no package.json:
+
+📄 Arquivo: package.json
+```
+"scripts": {
+  "test": "jest"
+}
+```
+Agora, execute os testes com:
+
+```
+npm test
+```
+
+📊 7. Relatórios de Testes
+Para gerar um relatório detalhado, use a flag --coverage:
+
+```
+npm test -- --coverage
+```
+
+📌 Para mais detalhes, consulte a [documentação oficial.](https://www.npmjs.com/package/supertest) <br>
+
+✅ Node.js (Versão recomendada: LTS) → [Baixar aqui](https://nodejs.org/pt/download) <br>
+✅ Gerenciador de pacotes (npm, yarn ou pnpm) <br>
+✅ Git (opcional, mas recomendado) → [Baixar aqui](https://git-scm.com/downloads)
+
+# 📁 Abaixo está projetos que fiz com cypress onde coloquei em prática os ensinamentos de teste nesse framework.<br>
+
+* [Projeto 1º - Superset]([https://github.com/heyMichaelS/CodeceptJs_Projeto_Web/tree/master](https://github.com/heyMichaelS/supertest_api))
+
+```
+
+```
+
+```
+
+```
 
 </details>
 </details>
 
   
 <details>
-<summary>Performance-tests</summary>
+<summary>Performance-tests(🚧 Em Construção)</summary>
 <br>
 
 <details>
@@ -378,7 +595,7 @@ Agora, após executar os testes, o relatório estará disponível na pasta outpu
 </details>
 
 <details>
-<summary>Security-tests</summary>
+<summary>Security-tests(🚧 Em Construção)</summary>
 <br>
 *  (Rpositorio em construção)
 </details>
