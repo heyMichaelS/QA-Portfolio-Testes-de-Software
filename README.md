@@ -24,15 +24,7 @@
 </details>
 
 <details>
-<summary>API-tests(🚧 Em Construção)</summary>
-<br>
-
-*  (Testes de API com Postman, Insomnia e automação)
-  
-</details>
-  
-<details>
-<summary>Automação de testes organizados por framework</summary>
+<summary>Automação de testes organizados por framework Web e API</summary>
 <br>
 
 <details>
@@ -255,7 +247,7 @@ Agora você tem um ambiente configurado para automação de testes com Playwrigh
   
 📌 Para mais detalhes, consulte a [documentação oficial.](https://playwright.dev/docs/intro)
 
-# 📁 Abaixo está projetos que fiz com cypress onde coloquei em prática os ensinamentos de teste nesse framework.<br>
+# 📁 Abaixo está projetos que fiz com Playwright onde coloquei em prática os ensinamentos de teste nesse framework.<br>
 
 * [Projeto 1° - Playwright](https://github.com/heyMichaelS/automacao_web_playwright)
 * [Projeto 2° - Playwright](https://github.com/heyMichaelS/playwright_api)
@@ -435,10 +427,10 @@ Agora você tem um ambiente configurado para testes de API com CodeceptJS! 🚀
 📌 Para mais detalhes, consulte a [documentação oficial.](https://codecept.io/api/#api-testing)
 Agora, após executar os testes, o relatório estará disponível na pasta output.
 
-# 📁 Abaixo está projetos que fiz com cypress onde coloquei em prática os ensinamentos de teste nesse framework.<br>
+# 📁 Abaixo está projetos que fiz com CodeceptJs onde coloquei em prática os ensinamentos de teste nesse framework.<br>
 
 * [Projeto 1º - CodeceptJS](https://github.com/heyMichaelS/CodeceptJs_Projeto_Web/tree/master)
-* [Projeto 2º - CodeceptJS](https://github.com/heyMichaelS/Appium_codeceptjs)
+* [Projeto 2º - CodeceptJS + Appium](https://github.com/heyMichaelS/Appium_codeceptjs)
 * [Projeto 3º - CodeceptJS]()
 
 </details>
@@ -450,9 +442,251 @@ Agora, após executar os testes, o relatório estará disponível na pasta outpu
 </details>
 
 <details>
-<summary>restassured</summary>
+<summary>Robot Framework</summary>
     <br>  
 * Selenium
+</details>
+
+<details>
+<summary>Rest-assured</summary>
+    <br>
+  
+📌 Introdução ao REST-Assured
+O REST-Assured é uma biblioteca Java para testar APIs RESTful de forma simples e intuitiva. Ele facilita a escrita de testes automatizados para serviços web, eliminando a necessidade de lidar diretamente com bibliotecas HTTP complexas.
+
+É amplamente utilizado para automação de testes de API em projetos Java, permitindo validar respostas HTTP, cabeçalhos, status e até mesmo autenticação de APIs.
+  
+🚀 Principais Vantagens do REST-Assured:  <br>
+✅ Sintaxe fluida e fácil de ler  <br>
+✅ Suporte nativo para testes de API REST  <br>
+✅ Integração com frameworks de teste como JUnit e TestNG  <br>
+✅ Suporte a autenticação, parâmetros e validação de JSON/XML  <br>
+
+🛠️ Pré-requisitos
+Antes de instalar o REST-Assured, verifique se possui os seguintes requisitos configurados corretamente:
+
+✔ JetBrains IntelliJ IDEA → [Baixe aqui](https://www.jetbrains.com/idea/download/?section=window) s<br>
+✔ Java JDK instalado e configurado (verifique a versão compatível com o projeto) → [Baixe aqui](https://www.oracle.com/br/java/technologies/javase/jdk11-archive-downloads.html) <br>
+✔ Apache Maven instalado e configurado (caso não tenha, baixe e instale) → [Baixe aqui](https://maven.apache.org/download.cgi) <br>
+
+
+🛠 Tutorial Passo a Passo: Instalação e Configuração
+📌 1. Adicionar REST-Assured ao Projeto
+Se estiver usando Maven, adicione a seguinte dependência ao pom.xml:
+
+
+ ```
+  <dependencies>
+    <dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>rest-assured</artifactId>
+        <version>5.4.0</version>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
+
+  ```
+Se estiver usando Gradle, adicione ao build.gradle:
+ ```
+dependencies {
+    testImplementation 'io.rest-assured:rest-assured:5.4.0'
+}
+
+  ```
+📌 2. Criar um Teste Simples com REST-Assured
+Agora, vamos criar um teste para validar um endpoint /ping que retorna um JSON com { "message": "pong" }.
+
+📄 Arquivo: ApiTest.java
+
+  ```
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import org.junit.jupiter.api.Test;
+
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
+
+public class ApiTest {
+
+    @Test
+    public void testPingEndpoint() {
+        given()
+            .when()
+                .get("https://api.exemplo.com/ping")
+            .then()
+                .statusCode(200)
+                .body("message", equalTo("pong"));
+    }
+}
+
+
+  ```
+
+   📌 3. Executando os Testes   <br>
+🔹Se estiver usando Maven, execute: <br>
+   
+  ```
+mvn test
+  ```
+🔹Se estiver usando Gradle, execute:
+    
+  ```
+gradle test
+  ```
+🔹Se o teste for bem-sucedido, você verá uma saída semelhante a:
+ ```
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+  ```
+    
+    ` `
+  
+    ` `
+📌 4. Testando um Endpoint com Autenticação
+Se o endpoint exigir autenticação, podemos passar um token Bearer ou autenticação básica:
+
+ ```
+@Test
+public void testComAutenticacao() {
+    given()
+        .auth()
+        .preemptive()
+        .basic("usuario", "senha")
+    .when()
+        .get("https://api.exemplo.com/secure-data")
+    .then()
+        .statusCode(200);
+}
+
+  ```
+Para tokens JWT (Bearer Token):
+
+ ```
+@Test
+public void testComBearerToken() {
+    given()
+        .header("Authorization", "Bearer seu_token_aqui")
+    .when()
+        .get("https://api.exemplo.com/protected")
+    .then()
+        .statusCode(200);
+}
+
+```
+✅ Testando um Endpoint POST
+Esse teste verifica se um novo usuário pode ser criado enviando um JSON no corpo da requisição.
+
+  ```
+import io.restassured.RestAssured;
+import org.junit.jupiter.api.Test;
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
+
+public class ApiTest {
+
+    @Test
+    public void testCriarUsuario() {
+        given()
+            .header("Content-Type", "application/json")
+            .body("{ \"nome\": \"João\", \"email\": \"joao@email.com\" }")
+        .when()
+            .post("https://api.exemplo.com/usuarios")
+        .then()
+            .statusCode(201)
+            .body("message", equalTo("Usuário criado com sucesso"));
+    }
+}
+
+```
+
+✅ Explicação: <br>
+
+* O given() define o corpo da requisição com JSON. <br>
+* O post() envia os dados para a API. <br>
+* O then() valida que o status da resposta é 201 (Created) e o corpo contém a mensagem esperada. <br>
+
+
+  🛠 Testando um Endpoint PUT (Atualizar um Usuário)
+Esse teste verifica se conseguimos atualizar os dados de um usuário existente.
+
+```
+  @Test
+public void testAtualizarUsuario() {
+    given()
+        .header("Content-Type", "application/json")
+        .body("{ \"nome\": \"João Silva\", \"email\": \"joaosilva@email.com\" }")
+    .when()
+        .put("https://api.exemplo.com/usuarios/1")
+    .then()
+        .statusCode(200)
+        .body("message", equalTo("Usuário atualizado com sucesso"));
+}
+
+  ```
+✅ Explicação:
+
+* Usamos PUT para atualizar o usuário com ID 1.
+* O JSON contém os novos dados do usuário.
+* Verificamos que o status HTTP retornado é 200 (OK).
+
+
+❌ Testando um Endpoint DELETE (Excluir um Usuário)
+Aqui testamos se conseguimos excluir um usuário pelo ID.
+  ```
+@Test
+public void testDeletarUsuario() {
+    when()
+        .delete("https://api.exemplo.com/usuarios/1")
+    .then()
+        .statusCode(204);
+}
+
+```
+✅ Explicação:
+
+* DELETE remove o usuário com ID 1.
+* O status esperado é 204 (No Content), indicando que o usuário foi removido sem erro.
+
+
+🔐 Testando um Endpoint Protegido com Token JWT (Autenticação Bearer)
+Se a API exigir um token JWT para acessar os recursos, podemos passar o token no cabeçalho:
+  ```
+@Test
+public void testComAutenticacaoJWT() {
+    given()
+        .header("Authorization", "Bearer seu_token_aqui")
+    .when()
+        .get("https://api.exemplo.com/dados-seguros")
+    .then()
+        .statusCode(200)
+        .body("status", equalTo("Acesso permitido"));
+}
+
+```
+
+✅ Explicação:
+
+O cabeçalho "Authorization" recebe um token Bearer para autenticação.
+A API deve retornar um status 200 (OK) se o token for válido.
+
+🔄 Executando os Testes
+Para rodar os testes, use:
+  ```
+mvn test  # Para Maven
+gradle test  # Para Gradle
+```
+🎯 Conclusão
+O REST-Assured facilita bastante os testes de APIs em Java, permitindo verificar status, corpo de resposta e autenticação de forma simples. Ele é ideal para integrar em pipelines CI/CD para garantir que os serviços REST estejam sempre funcionando corretamente.
+
+Se precisar de mais exemplos, como testes com POST, PUT e DELETE, posso te ajudar a expandir! 🚀
+
+📌 Para mais detalhes, consulte a [documentação oficial.](https://rest-assured.io/)
+Agora, após executar os testes, o relatório estará disponível na pasta output.
+
+# 📁 Abaixo está projetos que fiz com Rest-assured onde coloquei em prática os ensinamentos de teste nesse framework.<br>
+
+* [Projeto 1º - Rest-assured](https://github.com/heyMichaelS/rest-assured-api)
+
+
 </details>
   
 <details>
@@ -566,9 +800,9 @@ npm test -- --coverage
 ✅ Gerenciador de pacotes (npm, yarn ou pnpm) <br>
 ✅ Git (opcional, mas recomendado) → [Baixar aqui](https://git-scm.com/downloads)
 
-# 📁 Abaixo está projetos que fiz com cypress onde coloquei em prática os ensinamentos de teste nesse framework.<br>
+# 📁 Abaixo está projetos que fiz com Supertest onde coloquei em prática os ensinamentos de teste nesse framework.<br>
 
-* [Projeto 1º - Superset]([https://github.com/heyMichaelS/CodeceptJs_Projeto_Web/tree/master](https://github.com/heyMichaelS/supertest_api))
+* [Projeto 1º - Superset](https://github.com/heyMichaelS/supertest_api)
 
 ```
 
