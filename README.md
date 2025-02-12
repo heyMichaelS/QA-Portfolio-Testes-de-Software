@@ -448,6 +448,12 @@ Agora, após executar os testes, o relatório estará disponível na pasta outpu
     <br>  
 * Selenium
 </details>
+
+<details>
+<summary>restassured</summary>
+    <br>  
+* Selenium
+</details>
   
 <details>
 <summary>Supertest</summary>
