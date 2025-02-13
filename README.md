@@ -798,7 +798,7 @@ Agora, após executar os testes, o relatório estará disponível na pasta outpu
   
 <details>
 <summary>Supertest</summary>
-
+ <br>
 🚀 SuperTest - Testes de API Simples e Eficientes
 O SuperTest é uma biblioteca para testes de API em Node.js, projetada para facilitar a verificação de endpoints REST e GraphQL. Ele se integra facilmente com frameworks como Express, Koa e outros, permitindo testar requisições HTTP de maneira simples e intuitiva.
 
@@ -922,13 +922,13 @@ npm test -- --coverage
 <details>
   <summary>JMeter</summary>
 
-* JMeter
+<hr>
   </details>
 
 <details>
 <summary>k6</summary>
 
-* k6
+<hr>
 </details>
 </details>
 
