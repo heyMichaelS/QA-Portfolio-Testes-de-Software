@@ -25,7 +25,8 @@
 
 <details>
 <summary>Automação de testes organizados por framework Web e API</summary>
-<br>
+
+  <br>
 
 <details>
 <summary>Cypress</summary>
@@ -148,6 +149,7 @@ Para mais detalhes, consulte a [documentação oficial.](https://docs.cypress.io
 * [Projeto 3° - Cypress](https://github.com/heyMichaelS/cypress_api/tree/master)
 * [Projeto 4° - Cypress](https://github.com/heyMichaelS/cypress_automacao_web)
 * [Projeto 5° - Cypress](https://github.com/heyMichaelS/cypress_bdd)
+ <hr>
 </details>
 
 <details>
@@ -252,7 +254,7 @@ Agora você tem um ambiente configurado para automação de testes com Playwrigh
 * [Projeto 1° - Playwright](https://github.com/heyMichaelS/automacao_web_playwright)
 * [Projeto 2° - Playwright](https://github.com/heyMichaelS/playwright_api)
 
-
+<hr>
 
 </details>
 
@@ -432,7 +434,7 @@ Agora, após executar os testes, o relatório estará disponível na pasta outpu
 * [Projeto 1º - CodeceptJS](https://github.com/heyMichaelS/CodeceptJs_Projeto_Web/tree/master)
 * [Projeto 2º - CodeceptJS + Appium](https://github.com/heyMichaelS/Appium_codeceptjs)
 * [Projeto 3º - CodeceptJS]()
-
+<hr>
 </details>
 
 <details>
@@ -444,7 +446,111 @@ Agora, após executar os testes, o relatório estará disponível na pasta outpu
 <details>
 <summary>Robot Framework</summary>
     <br>  
-* Selenium
+  
+🤖 Introdução ao Robot Framework
+O Robot Framework é um framework de automação de testes baseado em palavras-chave (Keyword-Driven Testing) que permite escrever testes de forma intuitiva e legível. Ele é amplamente utilizado para testar APIs, aplicações web, mobile e desktop, suportando bibliotecas como Selenium, Appium, Requests e muitas outras.
+
+🚀 Principais Vantagens do Robot Framework <br>
+✅ Fácil de aprender – Utiliza uma sintaxe legível em estilo tabela ou texto <br>
+✅ Suporte a múltiplas bibliotecas – Selenium, Appium, API Requests, entre outras <br>
+✅ Extensível – Pode ser integrado com Python e Java para personalizar testes <br>
+✅ Execução multiplataforma – Roda em Windows, Linux e macOS <br>
+✅ Relatórios detalhados – Gera logs e reports automaticamente <br>
+
+
+🛠 Passo a Passo: Instalando e Configurando o Robot Framework <br>
+
+📌 1. Pré-requisitos <br>
+Antes de instalar o Robot Framework, verifique se tem:
+
+✔ Python 3.7 ou superior instalado <br>
+✔ pip atualizado <br>
+✔ IDE compatível (ex: VS Code, PyCharm ou Robot Framework IDE) <br>
+
+Para verificar o Python e o pip, rode:
+
+```
+python --version
+pip --version
+```
+Se o Python não estiver instalado, baixe-o [em:](https://www.python.org/downloads/)
+
+📌 2. Instalando o Robot Framework
+<br>
+Para instalar o Robot Framework, use o seguinte comando:
+
+```
+pip install robotframework-requests
+```
+No teste que eu fiz usei [RequestLibrary](https://github.com/MarketSquare/robotframework-requests#readme) <br>
+Para verificar se a instalação foi bem-sucedida:
+
+```
+robot --version
+```
+
+Exemplo de Test
+
+```
+*** Settings ***
+Library    RequestsLibrary
+
+*** Variables ***
+${URL_BASE}    https://restful-booker.herokuapp.com
+
+*** Keywords ***
+
+
+Step 1: Fazer uma request GET para a URL
+    ${response}=    GET    ${URL_BASE}/booking
+    Log    Response Status: ${response.status_code}
+    Log    Response Body: ${response.text}
+    [Return]    ${response}
+
+Step 2: Validar status da resposta
+    [Arguments]    ${response}
+    Status Should Be    200    ${response}
+
+Step 3: Validar corpo da resposta
+    [Arguments]    ${response}
+    ${response_json}=    Evaluate    json.loads($response.text)    json
+    Should Not Be Empty    ${response_json}    A resposta não pode ser vazia!
+
+*** Test Cases ***
+Cenário 1: Fazer uma request GET e validar resposta
+    ${response}=    Step 1: Fazer uma request GET para a URL
+    Step 2: Validar status da resposta    ${response}
+    Step 3: Validar corpo da resposta    ${response}
+
+```
+📌 5. Executando o Teste
+```
+ python -m robot nomedoteste.robot
+
+  ou
+
+robot nomedoteste.robot
+```
+
+Se quiser salvar os logs e reports em uma pasta específica:
+
+```
+robot -d results teste_login.robot
+```
+Após a execução, os logs e reports serão gerados na pasta results/ e poderão ser abertos no navegador.
+
+
+
+É uma ótima opção para equipes que querem uma abordagem mais amigável e reutilizável para a automação de testes.
+
+📌 Para mais detalhes, consulte a [documentação oficial.](https://robotframework.org/) <br>
+Agora, após executar os testes, o relatório é gerado na raiz do projeto.
+
+# 📁 Abaixo está projetos que fiz com Robot Framework onde coloquei em prática os ensinamentos de teste nesse framework.<br>
+
+* [Projeto 1º - Robot Framework](https://github.com/heyMichaelS/robot-framework-api)
+
+<hr>
 </details>
 
 <details>
@@ -686,8 +792,9 @@ Agora, após executar os testes, o relatório estará disponível na pasta outpu
 
 * [Projeto 1º - Rest-assured](https://github.com/heyMichaelS/rest-assured-api)
 
-
+<hr>
 </details>
+
   
 <details>
 <summary>Supertest</summary>
@@ -803,19 +910,11 @@ npm test -- --coverage
 # 📁 Abaixo está projetos que fiz com Supertest onde coloquei em prática os ensinamentos de teste nesse framework.<br>
 
 * [Projeto 1º - Superset](https://github.com/heyMichaelS/supertest_api)
-
-```
-
-```
-
-```
-
-```
-
+<hr>
 </details>
+<br>
 </details>
 
-  
 <details>
 <summary>Performance-tests(🚧 Em Construção)</summary>
 <br>
@@ -830,7 +929,6 @@ npm test -- --coverage
 <summary>k6</summary>
 
 * k6
-  
 </details>
 </details>
 
