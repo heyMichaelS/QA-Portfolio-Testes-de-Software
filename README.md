@@ -916,7 +916,7 @@ npm test -- --coverage
 </details>
 
 <details>
-<summary>Performance-tests(🚧 Em Construção)</summary>
+<summary>Performance-tests</summary>
 <br>
 
 <details>
@@ -927,6 +927,153 @@ npm test -- --coverage
 
 <details>
 <summary>k6</summary>
+
+<hr>
+</details>
+<details>
+<summary>Wiremock</summary>
+  <br>
+📌 WireMock - Introdução
+O WireMock é uma ferramenta de mocking de APIs que permite simular servidores HTTP para testes. Com ele, você pode criar respostas pré-definidas para chamadas HTTP sem depender de um servidor real. Isso é útil para testar sistemas que interagem com APIs de terceiros ou quando a API ainda não está desenvolvida.
+ 
+  <br>
+  
+🚀 Principais Vantagens do WireMock 
+  
+  <br>
+
+✅ Simula APIs HTTP – Permite criar respostas personalizadas para diferentes requisições <br>
+✅ Testes isolados – Evita dependência de serviços externos, garantindo estabilidade nos testes <br>
+✅ Suporte a JSON e XML – Facilita a criação de mocks com diferentes formatos de dados <br>
+✅ Grava e reproduz chamadas HTTP – Permite capturar requisições reais para testes posteriores  <br>
+✅ Integração com frameworks de teste – Pode ser usado com JUnit, REST-Assured e outras ferramentas <br>
+
+🛠 Passo a Passo: Instalando e Configurando o WireMock
+  
+  <br>
+  
+  <br>
+  
+📌 1. Pré-requisitos <br>
+<br> ✔ Java JDK 8 ou superior instalado  
+<br> ✔ Maven ou Gradle para gerenciamento de dependências 
+
+Para verificar a versão do Java:
+
+```
+java -version
+```
+Caso não tenha, baixe o JDK em:([https://jdk.java.net/](https://www.oracle.com/br/java/technologies/javase/jdk11-archive-downloads.html))
+
+📌 2. Instalando o WireMock <br>
+
+🔹 Opção 1: Usando o Standalone JAR <br>
+
+Baixe o WireMock standalone JAR: <br>
+
+```
+wget https://repo1.maven.org/maven2/com/github/tomakehurst/wiremock-standalone/3.3.1/wiremock-standalone-3.3.1.jar
+```
+Depois, inicie o WireMock localmente:
+
+```
+java -jar wiremock-standalone-3.3.1.jar
+```
+Isso iniciará o servidor WireMock na porta 8080 por padrão.
+
+🔹 Opção 2: Usando Maven
+Adicione esta dependência ao seu pom.xml:
+
+```
+<dependency>
+    <groupId>com.github.tomakehurst</groupId>
+    <artifactId>wiremock-jre8</artifactId>
+    <version>3.3.1</version>
+</dependency>
+```
+🔹 Opção 3: Usando Gradle
+Adicione no build.gradle:
+
+```
+dependencies {
+    testImplementation 'com.github.tomakehurst:wiremock-jre8:3.3.1'
+}
+```
+
+📌 3. Criando um Mock de API
+Agora, vamos configurar um endpoint falso que retorna um JSON.
+
+🔹 Criando um Stub de Requisição GET
+
+```
+curl -X POST http://localhost:8080/__admin/mappings \
+     -H "Content-Type: application/json" \
+     -d '{
+          "request": {
+              "method": "GET",
+              "url": "/api/usuarios"
+          },
+          "response": {
+              "status": 200,
+              "body": "[{\"id\":1, \"nome\":\"João\"}, {\"id\":2, \"nome\":\"Maria\"}]",
+              "headers": {
+                  "Content-Type": "application/json"
+              }
+          }
+      }'
+```
+📌 Explicação:
+
+* Sempre que alguém acessar http://localhost:8080/api/usuarios, o WireMock responderá com um JSON simulando usuários.
+* O status da resposta será 200 (OK).
+
+📌 4. Testando o Mock com REST-Assured
+Podemos testar essa API mockada com REST-Assured:
+```
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
+import org.junit.jupiter.api.Test;
+
+public class WireMockTest {
+    @Test
+    public void testMockUsuarios() {
+        given()
+        .when()
+            .get("http://localhost:8080/api/usuarios")
+        .then()
+            .statusCode(200)
+            .body("[0].nome", equalTo("João"));
+    }
+}
+```
+✅ Esse teste valida que a API mockada está retornando o JSON corretamente.
+
+📌 5. Rodando os Testes
+Se estiver usando Maven:
+```
+mvn test
+```
+Se estiver usando Gradle:
+```
+gradle test
+```
+
+🎯 Conclusão
+O WireMock é uma ferramenta poderosa para criar mocks de APIs de forma rápida e eficiente. Ele permite testar aplicações desacopladas de serviços externos e garante estabilidade nos testes.
+
+
+
+<br> ✔ Simula APIs HTTP sem depender de servidores reais 
+<br> ✔ Funciona com JUnit, REST-Assured, Selenium e Cypress 
+<br> ✔ Útil para testes de contrato e integração 
+
+Se precisar de mais exemplos ou integração com CI/CD
+
+# 📁 Abaixo está projetos que fiz com Wiremock onde coloquei em prática os ensinamentos .<br>
+
+* [Projeto 1º - Wiremock](https://github.com/heyMichaelS/wiremock)
+
+
 
 <hr>
 </details>
