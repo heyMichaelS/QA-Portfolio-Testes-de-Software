@@ -557,7 +557,7 @@ Agora, após executar os testes, o relatório é gerado na raiz do projeto.
 <summary>Rest-assured</summary>
     <br>
   
-📌 Introdução ao REST-Assured
+📌 Introdução ao REST-Assured  <br>
 O REST-Assured é uma biblioteca Java para testar APIs RESTful de forma simples e intuitiva. Ele facilita a escrita de testes automatizados para serviços web, eliminando a necessidade de lidar diretamente com bibliotecas HTTP complexas.
 
 É amplamente utilizado para automação de testes de API em projetos Java, permitindo validar respostas HTTP, cabeçalhos, status e até mesmo autenticação de APIs.
@@ -568,8 +568,8 @@ O REST-Assured é uma biblioteca Java para testar APIs RESTful de forma simples 
 ✅ Integração com frameworks de teste como JUnit e TestNG  <br>
 ✅ Suporte a autenticação, parâmetros e validação de JSON/XML  <br>
 
-🛠️ Pré-requisitos
-Antes de instalar o REST-Assured, verifique se possui os seguintes requisitos configurados corretamente:
+🛠️ Pré-requisitos <br>
+Antes de instalar o REST-Assured, verifique se possui os seguintes requisitos configurados corretamente:  <br>
 
 ✔ JetBrains IntelliJ IDEA → [Baixe aqui](https://www.jetbrains.com/idea/download/?section=window) s<br>
 ✔ Java JDK instalado e configurado (verifique a versão compatível com o projeto) → [Baixe aqui](https://www.oracle.com/br/java/technologies/javase/jdk11-archive-downloads.html) <br>
@@ -798,11 +798,16 @@ Agora, após executar os testes, o relatório estará disponível na pasta outpu
   
 <details>
 <summary>Supertest</summary>
- <br>
+ 
+  <br>
+  
 🚀 SuperTest - Testes de API Simples e Eficientes
 O SuperTest é uma biblioteca para testes de API em Node.js, projetada para facilitar a verificação de endpoints REST e GraphQL. Ele se integra facilmente com frameworks como Express, Koa e outros, permitindo testar requisições HTTP de maneira simples e intuitiva.
-
+  
+  <br>
+  
 🔹 Principais recursos do SuperTest:  <br>
+
 ✅ Facilidade de uso – Sintaxe intuitiva baseada em superagent  <br>
 ✅ Suporte a testes assíncronos com Promises e async/await  <br>
 ✅ Integração com Jest, Mocha, Chai e outros frameworks de teste  <br>
@@ -927,6 +932,265 @@ npm test -- --coverage
 
 <details>
 <summary>k6</summary>
+<br>
+  
+📌 k6 - Testes de Carga e Performance
+O k6 é uma ferramenta de código aberto para testes de carga e desempenho. Ele permite simular usuários simultâneos acessando uma aplicação para verificar seu comportamento sob diferentes níveis de carga.
+
+Desenvolvido em JavaScript, o k6 é leve, eficiente e projetado para testes em CI/CD e ambientes escaláveis.
+
+🔹 Site oficial: [https://k6.io/](https://k6.io/) <br>
+🔹 Repositório GitHub: [https://github.com/grafana/k6](https://github.com/grafana/k6) <br>
+
+
+🛠️ Pré-requisitos  <br>
+Antes de instalar o k6, verifique se seu ambiente atende aos seguintes requisitos:  <br>
+
+✔ Node.js (se for usar scripts avançados com módulos)  <br>
+✔ Sistema Operacional: Windows, macOS ou Linux  <br>
+✔ Git (opcional, para gerenciar repositórios com testes) <br>
+
+📌 Instalação  <br>
+🔹 Windows  <br>
+1️⃣ Baixe o binário oficial no [site do k6](https://k6.io/open-source/) <br>
+2️⃣ Extraia o arquivo e adicione ao Path do Windows <br>
+3️⃣ Teste a instalação com o comando: <br>
+
+
+```
+k6 version
+```
+
+🚀 Criando um Teste de Carga Simples
+Crie um arquivo teste.js e adicione o seguinte código:
+
+```
+import http from 'k6/http';
+import { sleep, check } from 'k6';
+
+export let options = {
+    vus: 10, // Número de usuários virtuais simultâneos
+    duration: '10s', // Tempo total do teste
+};
+
+export default function () {
+    let res = http.get('https://test-api.k6.io');
+    
+    // Validações básicas
+    check(res, {
+        'status é 200': (r) => r.status === 200,
+        'tempo de resposta menor que 500ms': (r) => r.timings.duration < 500,
+    });
+
+    sleep(1); // Simula um tempo de espera entre as requisições
+}
+```
+📌 Rodando o Teste
+```
+k6 run teste.js
+```
+A saída exibirá estatísticas detalhadas sobre a performance da API testada.
+
+
+📊 Testes com Diferentes Cenários de Carga <br>
+🔹 Teste de Pico de Usuários <br>
+```
+export let options = {
+    stages: [
+        { duration: '10s', target: 20 }, // Aumenta para 20 usuários em 10s
+        { duration: '30s', target: 50 }, // Mantém 50 usuários por 30s
+        { duration: '10s', target: 0 },  // Reduz para 0 usuários em 10s
+    ],
+};
+```
+🔹 Teste de Estresse
+```
+export let options = {
+    vus: 100,
+    duration: '1m',
+};
+```
+🔹 Teste de Spike (pico repentino)
+
+```
+export let options = {
+    stages: [
+        { duration: '5s', target: 100 },
+        { duration: '10s', target: 500 },
+        { duration: '5s', target: 100 },
+    ],
+};
+
+```
+📌 Integração com CI/CD
+O k6 pode ser facilmente integrado a GitHub Actions, Jenkins, GitLab CI e outras ferramentas.
+
+Exemplo de execução automática no GitHub Actions:
+
+```
+name: Teste de Performance
+
+on: [push]
+
+jobs:
+  k6-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v2
+
+      - name: Instalar k6
+        run: sudo apt install k6
+
+      - name: Executar testes de carga
+        run: k6 run teste.js
+
+```
+
+📊 Tipos de Testes de Carga e seus Cenários <br>
+1️⃣ Teste de Carga Padrão (Simula tráfego normal)  <br>
+📌 Objetivo: Avaliar o desempenho da aplicação sob carga normal esperada.  <br>
+📌 Como funciona: Mantém um número fixo de usuários enviando requisições por um período.  <br>
+
+```
+export let options = {
+    vus: 50, // Número fixo de usuários virtuais
+    duration: '1m', // Executa o teste por 1 minuto
+};
+```
+✅ Útil para verificar uso regular da aplicação.  <br>
+
+2️⃣ Teste de Stress (Descobrir o limite da aplicação)  <br>
+📌 Objetivo: Testar a aplicação sob carga extrema para identificar seu limite.  <br>
+📌 Como funciona: Aumenta progressivamente o número de usuários até o sistema começar a falhar.  <br>
+```
+export let options = {
+    stages: [
+        { duration: '30s', target: 100 },  // Aumenta para 100 usuários em 30s
+        { duration: '1m', target: 500 },   // Mantém 500 usuários por 1 minuto
+        { duration: '30s', target: 0 },    // Reduz gradualmente para 0
+    ],
+};
+
+```
+✅ Indica ponto de falha e possíveis gargalos da aplicação.  <br>
+
+
+3️⃣ Teste de Pico (Spike Test)  <br>
+📌 Objetivo: Avaliar como a aplicação lida com um aumento repentino e curto de tráfego.  <br>
+📌 Como funciona: Simula um pico rápido de usuários que logo desaparece.  <br>
+
+```
+export let options = {
+    stages: [
+        { duration: '5s', target: 200 },  // Sobe rapidamente para 200 usuários
+        { duration: '10s', target: 200 }, // Mantém por 10s
+        { duration: '5s', target: 0 },    // Cai rapidamente para 0
+    ],
+};
+
+```
+✅ Testa a resiliência e recuperação do sistema após uma alta repentina de tráfego.  <br>
+
+
+4️⃣ Teste de Soak (Teste de Resistência)  <br>
+📌 Objetivo: Avaliar a estabilidade da aplicação sob uma carga contínua por um longo período.  <br>
+📌 Como funciona: Mantém um número fixo de usuários por um longo tempo para identificar vazamentos de memória ou degradação de performance.  <br>
+```
+export let options = {
+    vus: 50, // Número de usuários constantes
+    duration: '30m', // Executa por 30 minutos
+};
+
+```
+✅ Indicado para verificar vazamento de memória e degradação ao longo do tempo.  <br>
+
+
+
+5️⃣ Teste de Escalabilidade (Ramp Up / Ramp Down)  <br>
+📌 Objetivo: Avaliar como a aplicação responde a aumentos e reduções graduais de tráfego.  <br>
+📌 Como funciona: Aumenta e reduz progressivamente os usuários.  <br>
+
+```
+export let options = {
+    stages: [
+        { duration: '1m', target: 50 },   // Começa com 50 usuários
+        { duration: '2m', target: 200 },  // Aumenta para 200 usuários
+        { duration: '2m', target: 500 },  // Sobe para 500 usuários
+        { duration: '2m', target: 200 },  // Reduz para 200 usuários
+        { duration: '1m', target: 50 },   // Volta para 50 usuários
+    ],
+};
+
+```
+✅ Bom para verificar como a aplicação escala dinamicamente.  <br>
+
+6️⃣ Teste de Picos Periódicos (Burst Test)  <br>
+📌 Objetivo: Testar como o sistema reage a picos intermitentes de carga.  <br>
+📌 Como funciona: Simula picos repetidos de tráfego com momentos de descanso entre eles.  <br>
+
+```
+export let options = {
+    stages: [
+        { duration: '10s', target: 100 },  // Pico para 100 usuários
+        { duration: '20s', target: 10 },   // Volta para 10 usuários
+        { duration: '10s', target: 150 },  // Pico para 150 usuários
+        { duration: '20s', target: 10 },   // Volta para 10 usuários
+        { duration: '10s', target: 200 },  // Pico para 200 usuários
+    ],
+};
+```
+✅ Indicado para sistemas que enfrentam tráfego intermitente, como e-commerce em promoções.
+
+🔚 Conclusão
+O k6 é uma ferramenta poderosa para garantir que sistemas suportem grandes volumes de usuários sem degradação. Ele pode ser integrado com CI/CD, possui suporte a múltiplos cenários de teste e é extremamente eficiente.
+
+Se quiser explorar mais, consulte a [documentação oficial:](https://grafana.com/docs/k6/latest/)
+
+# 📁 Abaixo está projetos que fiz com K6 onde coloquei em prática os ensinamentos de teste carga.<br>
+
+* [Projeto 1º - K6](https://github.com/heyMichaelS/K6)
+
+
+```
+
+```
+
+
+
+```
+
+```
+
+
+
+```
+
+```
+
+
+
+```
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <hr>
 </details>
