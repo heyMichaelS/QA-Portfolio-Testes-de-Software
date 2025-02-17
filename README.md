@@ -925,6 +925,52 @@ npm test -- --coverage
 <br>
 
 <details>
+  <summary>Postman</summary>
+
+  <br>
+  
+Postman para Testes de Performance 🚀
+O Postman é uma ferramenta poderosa para testar APIs RESTful, mas além dos testes funcionais, ele também pode ser usado para testes de performance. Com o Runner do Postman e scripts no Pre-request Script e Tests, conseguimos simular diferentes cenários de carga.
+
+Tipos de Testes de Performance no Postman <br>
+🔹 Fixed Load – Simula um número fixo de requisições ao longo do tempo. <br>
+🔹 Ramp-Up – Aumenta gradualmente a carga para analisar o comportamento do sistema sob pressão progressiva. <br>
+🔹 Spike Test – Simula um pico repentino de requisições para avaliar a resiliência da API. <br>
+🔹 Peak Test – Mede o desempenho sob carga máxima sustentada, verificando como o sistema lida com tráfego intenso. <br>
+
+1️⃣ Instalar o Postman
+  Baixe e instale o Postman pelo site oficial: [aqui](https://www.postman.com/downloads/)
+  <br>
+  
+<p align="center">Com as collections configuradas só clicar nos tres ... e como na imagem abaixo clicar em Run Collection 
+<p align="center"><img src="https://github.com/heyMichaelS/postman/blob/master/imagens/Run%20collection.png" alt="Sua Foto" width="350" height="500"/>
+
+<p align="center">Após isso ira abrir as requisições que deseja testar marque somente a que vai fazer o teste de carga 
+<p align="center">🔹Load Profile 🔹 Virtual Users 🔹Test Duration 
+<p align="center"><img src="https://github.com/heyMichaelS/postman/blob/master/imagens/caminho%20performace.png " alt="Sua Foto" width="750" height="500"/>
+
+# Abaixo está alguns exemplos que usei em uma API no wiremock
+
+<p align="center"><img src="https://github.com/heyMichaelS/postman/blob/master/imagens/Teste%20Fixed.png" alt="Sua Foto" width="750" height="500"/>
+<p align="center"> FIXED
+
+<hr>
+<p align="center"><img src="https://github.com/heyMichaelS/postman/blob/master/imagens/Rump%20up%20no%20postman.png"  alt="Sua Foto" width="750" height="500"/>
+<p align="center"> RAMP UP
+<hr>
+  
+<p align="center"><img src= "https://github.com/heyMichaelS/postman/blob/master/imagens/Teste%20Peak.png"  alt="Sua Foto" width="750" height="500"/>
+<p align="center"> PEAK
+  <hr>
+<p align="center"><img src= "https://github.com/heyMichaelS/postman/blob/master/imagens/Teste%20Spike.png"  alt="Sua Foto" width="750" height="500"/>
+  <p align="center"> SPIKE
+  <hr>
+<p align="center"><img src= "https://github.com/heyMichaelS/postman/blob/master/imagens/Teste%20Ramp%20up%20(erro%20500).png"  alt="Sua Foto" width="750" height="500"/>
+ <p align="center"> RAMP UP (GET COM ERRO 500)
+  </details>
+
+
+<details>
   <summary>JMeter</summary>
 
 <hr>
@@ -1173,22 +1219,6 @@ Se quiser explorar mais, consulte a [documentação oficial:](https://grafana.co
 ```
 
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
