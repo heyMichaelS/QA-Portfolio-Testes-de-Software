@@ -1188,6 +1188,174 @@ export let options = {
 ```
 ✅ Indicado para sistemas que enfrentam tráfego intermitente, como e-commerce em promoções.
 
+## Teste específicos exemplos
+
+📌 Cenários de Teste de Carga Específicos
+1️⃣ Teste de Checkout (E-commerce)
+📌 Objetivo: Avaliar o desempenho do fluxo de checkout em uma loja virtual sob alta demanda.
+📌 Cenário: Simula usuários navegando pelo site, adicionando produtos ao carrinho e finalizando a compra.
+
+<br>
+
+```
+import http from 'k6/http';
+import { sleep } from 'k6';
+
+export let options = {
+    stages: [
+        { duration: '30s', target: 50 },   // 50 usuários navegando no site
+        { duration: '1m', target: 200 },   // Aumenta para 200 usuários comprando
+        { duration: '30s', target: 50 },   // Reduz novamente para 50
+    ],
+};
+
+export default function () {
+    http.get('https://loja-teste.com/produtos');
+    sleep(1);
+    http.post('https://loja-teste.com/carrinho', { id: 123, quantidade: 1 });
+    sleep(1);
+    http.post('https://loja-teste.com/checkout', { pagamento: 'cartão' });
+}
+```
+✅ Útil para testar blackfriday, promoções ou eventos com alta demanda.
+
+
+2️⃣ Teste de Login Massivo (Aplicação Web)
+📌 Objetivo: Simular milhares de usuários tentando fazer login ao mesmo tempo.
+📌 Cenário: Simula múltiplos usuários acessando a plataforma e autenticando.
+```
+import http from 'k6/http';
+import { sleep } from 'k6';
+
+export let options = {
+    stages: [
+        { duration: '1m', target: 1000 },  // 1000 logins simultâneos
+        { duration: '2m', target: 3000 },  // Aumenta para 3000 usuários
+        { duration: '1m', target: 0 },     // Finaliza os testes
+    ],
+};
+
+export default function () {
+    let res = http.post('https://app-teste.com/login', JSON.stringify({
+        email: `user${__VU}@teste.com`, 
+        password: '123456'
+    }), { headers: { 'Content-Type': 'application/json' } });
+
+    sleep(1);
+}
+```
+✅ Ótimo para testar autenticação e performance do banco de dados em grande escala.
+
+
+3️⃣ Teste de API com Alta Concorrência
+📌 Objetivo: Testar se uma API aguenta um alto volume de requisições simultâneas.
+📌 Cenário: Simula múltiplas requisições GET e POST para uma API RESTful.
+
+```
+import http from 'k6/http';
+import { sleep } from 'k6';
+
+export let options = {
+    vus: 500,    // 500 usuários simultâneos
+    duration: '2m', // Executa o teste por 2 minutos
+};
+
+export default function () {
+    http.get('https://api.meusistema.com/dados');
+    sleep(0.5);
+    http.post('https://api.meusistema.com/enviar', JSON.stringify({ nome: 'QA Test' }), {
+        headers: { 'Content-Type': 'application/json' }
+    });
+}
+```
+✅ Bom para testar tempo de resposta da API e possíveis gargalos.
+
+4️⃣ Teste de Microservices (Comunicação entre serviços)
+📌 Objetivo: Avaliar a comunicação entre microsserviços sob carga.
+📌 Cenário: Simula chamadas entre múltiplas APIs.
+```
+import http from 'k6/http';
+import { check, sleep } from 'k6';
+
+export let options = {
+    vus: 300,
+    duration: '3m',
+};
+
+export default function () {
+    let auth = http.post('https://auth.meusistema.com/login', JSON.stringify({
+        usuario: 'admin', senha: 'teste123'
+    }), { headers: { 'Content-Type': 'application/json' } });
+
+    check(auth, { "Login bem-sucedido": (res) => res.status === 200 });
+
+    let response = http.get('https://dados.meusistema.com/info', {
+        headers: { 'Authorization': `Bearer ${auth.json().token}` }
+    });
+
+    check(response, { "API de dados respondeu": (res) => res.status === 200 });
+
+    sleep(1);
+}
+
+
+```
+✅ Ajuda a identificar problemas de autenticação e integração entre serviços.
+
+5️⃣ Teste de Tempo de Sessão (Simulação de Usuários Reais)
+📌 Objetivo: Simular usuários navegando por longos períodos na aplicação.
+📌 Cenário: Usuários entram no sistema e realizam interações por um tempo específico.
+```
+import http from 'k6/http';
+import { sleep } from 'k6';
+
+export let options = {
+    vus: 100,
+    duration: '1h',
+};
+
+export default function () {
+    http.get('https://sistema.com/dashboard');
+    sleep(3);
+    http.get('https://sistema.com/perfil');
+    sleep(3);
+    http.get('https://sistema.com/configuracoes');
+    sleep(3);
+}
+```
+✅ Testa estabilidade e vazamento de memória em longas sessões de uso.
+
+6️⃣ Teste de Banco de Dados (Alta Taxa de Queries)
+📌 Objetivo: Simular altos volumes de queries sendo executadas ao mesmo tempo.
+📌 Cenário: Usuários acessando e enviando consultas ao banco de dados.
+```
+import http from 'k6/http';
+import { sleep } from 'k6';
+
+export let options = {
+    vus: 200,
+    duration: '5m',
+};
+
+export default function () {
+    http.get('https://api.sistema.com/relatorios');
+    sleep(0.5);
+    http.get('https://api.sistema.com/usuarios');
+    sleep(0.5);
+    http.post('https://api.sistema.com/inserir', JSON.stringify({
+        nome: 'Teste', email: 'teste@qa.com'
+    }), { headers: { 'Content-Type': 'application/json' } });
+}
+```
+✅ Ajuda a medir o impacto de consultas concorrentes no banco de dados.
+
+🚀 Como Executar os Testes?
+Após salvar o código em um arquivo teste.js, execute com:
+
+```
+k6 run teste.js
+```
+
 🔚 Conclusão
 O k6 é uma ferramenta poderosa para garantir que sistemas suportem grandes volumes de usuários sem degradação. Ele pode ser integrado com CI/CD, possui suporte a múltiplos cenários de teste e é extremamente eficiente.
 
