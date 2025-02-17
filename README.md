@@ -14,7 +14,7 @@
   </a>
 </p>
 
-## Repositório
+## Repositórios
 
 <details>
 <summary>Manual-tests(🚧 Em Construção)</summary>
