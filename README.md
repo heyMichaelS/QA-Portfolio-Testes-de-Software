@@ -20,9 +20,110 @@
 <summary>Manual-tests(🚧 Em Construção)</summary>
 <br>
 
+
 *  Testes manuais (documentação, casos de teste, checklist, relatórios)
 </details>
 
+<details>
+<summary>API-tests</summary>
+<br>
+
+<details>
+<summary>Postman + Newman</summary>
+
+# Nesse estudo eu vou postar alguns prints de como foi feito os testes no postaman e de como usei o newman pra complementar
+
+# 1-Passo configurei a url base
+
+<p align="center"><img src=https://github.com/heyMichaelS/postman-newman/blob/master/imagens/Captura%20de%20tela%202025-02-20%20111409.png  alt="Sua Foto" width="800" height="500"/>
+
+
+# 2-Coloquei no script de teste para gerar um email diferente sempre que preenchido 
+<p align="center"><img src=https://github.com/heyMichaelS/postman-newman/blob/master/imagens/Captura%20de%20tela%202025-02-20%20111615.png alt="Sua Foto" width="800" height="500"/>
+
+* 2.1 Response
+ <p align="center"><img src=https://github.com/heyMichaelS/postman-newman/blob/master/imagens/Captura%20de%20tela%202025-02-20%20111632.png alt="Sua Foto" width="800" height="500"/>
+
+* 2.2 O email foi alterado por uma variávei de ambiente para aceitar a condição do script "{{ }}"
+<p align="center"><img src= https://github.com/heyMichaelS/postman-newman/blob/master/imagens/Captura%20de%20tela%202025-02-20%20111748.png alt="Sua Foto" width="800" height="500"/>
+
+# 3-Register a user an invalid password
+<p align="center"><img src= https://github.com/heyMichaelS/postman-newman/blob/master/imagens/Captura%20de%20tela%202025-02-20%20112540.png alt="Sua Foto" width="800" height="500"/>
+
+* 3.1 Body
+<p align="center"><img src= https://github.com/heyMichaelS/postman-newman/blob/master/imagens/Captura%20de%20tela%202025-02-20%20112553.png alt="Sua Foto" width="800" height="500"/>
+
+# 4-Autenticar um usuario 
+
+<p align="center"><img src= https://github.com/heyMichaelS/postman-newman/blob/master/imagens/Captura%20de%20tela%202025-02-20%20112654.png alt="Sua Foto" width="800" height="500"/>
+
+* 4.1 Body
+
+<p align="center"><img src=https://github.com/heyMichaelS/postman-newman/blob/master/imagens/Captura%20de%20tela%202025-02-20%20112706.png alt="Sua Foto" width="800" height="500"/>
+
+# 5-Registrar um post 
+
+<p align="center"><img src=https://github.com/heyMichaelS/postman-newman/blob/master/imagens/Captura%20de%20tela%202025-02-20%20112739.png alt="Sua Foto" width="800" height="500"/>
+
+* 5.1 Body
+ <p align="center"><img src= https://github.com/heyMichaelS/postman-newman/blob/master/imagens/Captura%20de%20tela%202025-02-20%20112750.png alt="Sua Foto" width="800" height="500"/>
+
+* 5.2 Configuração do Baren Token 
+ <p align="center"><img src= https://github.com/heyMichaelS/postman-newman/blob/master/imagens/Captura%20de%20tela%202025-02-20%20112801.png alt="Sua Foto" width="800" height="500"/>
+
+ 
+# 6-Retrivies
+
+ <p align="center"><img src= https://github.com/heyMichaelS/postman-newman/blob/master/imagens/Captura%20de%20tela%202025-02-20%20112852.png alt="Sua Foto" width="800" height="500"/>
+
+# 7-Delete um post
+
+ <p align="center"><img src= https://github.com/heyMichaelS/postman-newman/blob/master/imagens/Captura%20de%20tela%202025-02-20%20113000.png alt="Sua Foto" width="800" height="500"/>
+
+* 7.1 Como é delete de um post precisa de uma autenticação seguindo a regra da api
+
+  <p align="center"><img src= https://github.com/heyMichaelS/postman-newman/blob/master/imagens/Captura%20de%20tela%202025-02-20%20113019.png alt="Sua Foto" width="800" height="500"/>
+
+# 8-Delete sem autenticação nesse caso não é necessário
+
+ <p align="center"><img src= https://github.com/heyMichaelS/postman-newman/blob/master/imagens/Captura%20de%20tela%202025-02-20%20113033.png alt="Sua Foto" width="800" height="500"/>
+
+ # 9-Depois de finalizado consegue fazer o export do json de todo teste e rodar com newman 
+ 
+Para instalar na maquina antes de rodar a collection
+```
+npm i -g newman
+```
+Após
+```
+newman run nome_do-arquivo
+```
+* 9.1 após instalado no terminal deve ser assim sua visão
+
+<p align="center"><img src= https://github.com/heyMichaelS/postman-newman/blob/master/imagens/Captura%20de%20tela%202025-02-19%20034644.png alt="Sua Foto" width="500" height="500"/>
+
+* 9.2 No newman também pode gerar relatorios em html com esse comando
+
+```
+npm i -g newman-reporter-htmlextra
+```
+Após
+```
+newman run nome_do_arquivo.json -r htmlextra
+```
+* Irá gerar uma visão assim 
+<p align="center"><img src= https://github.com/heyMichaelS/postman-newman/blob/master/imagens/Captura%20de%20tela%202025-02-19%20034602.png alt="Sua Foto" width="800" height="500"/>
+
+
+
+# 📁 Abaixo está projetos que fiz com Postman + Newman onde coloquei em prática os ensinamentos de teste<br>
+
+* [Projeto 1° - Postman + Newman](https://github.com/heyMichaelS/postman-newman)
+
+<hr>
+</details>
+</details>
+ 
 <details>
 <summary>Automação de testes organizados por framework Web e API</summary>
 
