@@ -1070,9 +1070,153 @@ Tipos de Testes de Performance no Postman <br>
  <p align="center"> RAMP UP (GET COM ERRO 500)
   </details>
 
-
 <details>
   <summary>JMeter</summary>
+  
+<br>
+  
+Apache JMeter - Testes de Performance
+
+🔍 O que é o Apache JMeter?
+
+<br>
+
+O Apache JMeter é uma ferramenta open-source desenvolvida pela Apache Software Foundation para realizar testes de carga e performance em aplicações web, APIs, bancos de dados e muito mais. Ele permite simular múltiplos usuários simultâneos e analisar o desempenho do sistema sob diferentes condições.
+
+Principais características do JMeter:  <br>
+
+<br>
+
+✅ Testes de carga, stress, e desempenho para aplicações web e APIs <br>
+✅ Simulação de múltiplos usuários simultâneos  <br>
+✅ Suporte a protocolos como HTTP, HTTPS, FTP, JDBC, JMS, entre outros  <br>
+✅ Relatórios detalhados com métricas de resposta, tempo de execução, erro, etc.  <br>
+✅ Extensível através de plugins personalizados  <br>
+
+
+🛠 Pré-requisitos
+Antes de instalar o JMeter, certifique-se de que você possui os seguintes requisitos no seu sistema:
+
+Java JDK 8 ou superior → Você pode verificar sua versão com:
+
+```
+java -version
+```
+Se não estiver instalado, faça o download [aqui.](https://www.oracle.com/java/technologies/downloads/#java11?er=221886) <br>
+JMeter → Baixe a versão mais recente [aqui.](https://jmeter.apache.org/download_jmeter.cgi) <br>
+
+🚀 Instalação e Configuração <br>
+1️⃣ Baixe o Apache JMeter e extraia o conteúdo do arquivo ZIP para um local no seu computador. <br>
+2️⃣ Abra o JMeter: <br>
+
+No Windows: execute o arquivo jmeter.bat dentro da pasta bin/. <br>
+
+3️⃣ Verifique se o JMeter abriu corretamente. Você verá a interface gráfica do JMeter pronta para criar testes de carga. <br>
+
+🎯 Criando um Teste no JMeter <br>
+Agora vamos criar um teste de carga básico. <br>
+
+1️⃣ Adicionando um Grupo de Threads (Usuários Virtuais): <br>
+
+Clique com o botão direito em "Test Plan" → Add → Threads (Users) → Thread Group <br>
+
+<br>
+
+Configure os parâmetros básicos:
+Number of Threads (Users): Quantidade de usuários simultâneos
+Ramp-Up Period (seconds): Tempo para atingir o número total de usuários
+Loop Count: Quantidade de repetições do teste
+
+2️⃣ Adicionando uma Requisição HTTP: <br>
+
+Clique com o botão direito no "Thread Group" → Add → Sampler → HTTP Request 
+
+<p align="center"><img src=https://github.com/heyMichaelS/JMeter/blob/master/imagens/Captura%20de%20tela%202025-02-28%20025642.png  alt="Sua Foto" width="800" height="500"/>
+
+
+<br>
+
+Configure os seguintes campos:
+Server Name or IP: Digite a URL do servidor (exemplo: meusite.com)
+Method: Escolha GET, POST, PUT, DELETE
+Path: Insira o endpoint da API (/api/login, /api/produtos)
+Parâmetros: Vá até a aba "Parameters" e adicione os parâmetros da requisição
+
+<br>
+
+3️⃣ Adicionando Headers HTTP (Opcional):
+
+Botão direito no "Thread Group" → Add → Config Element → HTTP Header Manager <br>
+Clique em Add e insira os headers necessários, como: <br>
+
+<p align="center"><img src=https://github.com/heyMichaelS/JMeter/blob/master/imagens/Captura%20de%20tela%202025-02-28%20025629.png alt="Sua Foto" width="800" height="500"/>
+
+```
+Name: Accept
+Value: */*
+```
+
+Exemplo:
+```
+Key: Authorization  
+Value: Bearer meu_token_de_autenticacao
+```
+
+<br>
+
+4️⃣ Adicionando um Listener para visualizar os resultados:
+
+Botão direito no "Thread Group" → Add → Listener → View Results Tree <br>
+
+📌 Executando e Analisando os Resultados
+<br>
+1️⃣ Clique no botão "Start" (▶️) para iniciar o teste <br>
+2️⃣ Vá até o "View Results Tree" para visualizar as respostas das requisições <br>
+3️⃣ Analise os tempos de resposta, erros e status HTTP retornados <br>
+
+🔌 Instalando Plugins no JMeter
+Para obter mais funcionalidades, instale o JMeter Plugins Manager:
+
+1️⃣ Baixe o Plugin Manager: Baixar Plugin Manager  <br>
+2️⃣ Copie o arquivo JMeterPlugins-Manager.jar para a pasta:  <br>
+
+```
+apache-jmeter-5.x/lib/ext/
+```
+
+3️⃣ Abra o JMeter e vá até:  <br>
+
+Options → Plugin Manager  <br>
+
+4️⃣ Instale o plugin jp@gc - Ultimate Thread Group, que permite configurações mais avançadas de carga.  <br>
+
+📊 Gerando Relatórios de Teste
+
+<br>
+
+Após a execução do teste, você pode gerar um relatório HTML detalhado com gráficos e estatísticas.
+
+1️⃣ Configurar a geração do relatório: <br>
+
+* Criar uma pasta para armazenar os logs (D:/apache-jmeter/logs/) <br>
+* Criar um arquivo para o log do teste (log.jtl) <br>
+
+2️⃣ Executar o teste e salvar os resultados: <br>
+
+```
+jmeter -n -t teste.jmx -l D:/apache-jmeter/logs/log.jtl -e -o D:/apache-jmeter/reports/
+```
+
+3️⃣ O relatório será gerado na pasta especificada e pode ser acessado via navegador.  <br>
+
+<p align="center"><img src=https://github.com/heyMichaelS/JMeter/blob/master/imagens/Captura%20de%20tela%202025-02-28%20031539.png  alt="Sua Foto" width="700" height="400"/>
+
+
+🚀 Conclusão
+O Apache JMeter é uma ferramenta poderosa para testes de carga e desempenho, permitindo simular múltiplos usuários simultâneos e analisar métricas importantes do sistema.
+
+Seja testando APIs, aplicações web, microsserviços ou bancos de dados, o JMeter pode ser configurado para fornecer relatórios detalhados e ajudar na identificação de gargalos de desempenho.
+
 
 <hr>
   </details>
@@ -1466,32 +1610,8 @@ Se quiser explorar mais, consulte a [documentação oficial:](https://grafana.co
 
 * [Projeto 1º - K6](https://github.com/heyMichaelS/K6)
 
-
-```
-
-```
-
-
-
-```
-
-```
-
-
-
-```
-
-```
-
-
-
-```
-
-```
-
-
-
 <hr>
+
 </details>
 <details>
 <summary>Wiremock</summary>
