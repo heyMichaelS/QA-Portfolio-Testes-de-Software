@@ -533,7 +533,7 @@ Agora, após executar os testes, o relatório estará disponível na pasta outpu
 # 📁 Abaixo está projetos que fiz com CodeceptJs onde coloquei em prática os ensinamentos de teste nesse framework.<br>
 
 * [Projeto 1º - CodeceptJS](https://github.com/heyMichaelS/CodeceptJs_Projeto_Web/tree/master)
-* [Projeto 2º - CodeceptJS + Appium](https://github.com/heyMichaelS/Appium_codeceptjs)
+* [Projeto 2º - CodeceptJS + Appium](https://github.com/heyMichaelS/Automacao_Testes_Mobile_CodeceptJs_Appium))
 * [Projeto 3º - CodeceptJS]()
 <hr>
 </details>
