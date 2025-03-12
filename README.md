@@ -8,11 +8,16 @@ Olá! 👋 Me chamo Michael Felipe e sou QA Engineer com experiência em testes 
 🚀 Minha Jornada
 Desde o início da minha carreira, venho aprimorando minhas habilidades em testes de software, passando por áreas como:
 
-Testes Manuais 📝 (Caixa Branca, Caixa Preta, Regressão, Exploratório) <br>
-Automação de Testes 🤖 (Cypress, Selenium, Playwright, Appium, Robot Framework)  <br>
-Testes de API 🔗 (Postman, Supertest, CodeceptJS, REST Assured)  <br>
-Testes de Performance ⚡ (JMeter, K6, Wiremock)  <br>
-Integração Contínua (CI/CD) 🔄 (GitHub Actions, Jenkins, GitLab CI)  <br>
+`Testes Manuais 📝` (Caixa Branca, Caixa Preta, Regressão, Exploratório) <br>
+
+`Automação de Testes 🤖` (Cypress, Selenium, Playwright, Appium, Robot Framework)  <br>
+
+`Testes de API 🔗` (Postman, Supertest, CodeceptJS, REST Assured)  <br>
+
+`Testes de Performance ⚡` (JMeter, K6, Wiremock)  <br>
+
+`Integração Contínua (CI/CD) 🔄` (GitHub Actions, Jenkins, GitLab CI)  <br>
+
 Com uma formação em Banco de Dados pela FATEC, também tenho experiência com SQL e manipulação de dados, o que me ajuda a validar integrações e estruturar testes mais robustos.  <br>
 
 💡 O Que Você Vai Encontrar Neste Portfólio?
