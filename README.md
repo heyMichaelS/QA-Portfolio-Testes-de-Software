@@ -2,6 +2,25 @@
 
 <p align="justify"> Bem-vindo ao meu portfólio de testes de software! Aqui você encontrará uma coleção organizada e prática de testes manuais, testes automatizados e testes de API, utilizando as principais ferramentas do mercado. O objetivo deste repositório é demonstrar minhas habilidades em qualidade de software e automação de testes, seguindo boas práticas e frameworks modernos. Se você é recrutador, desenvolvedor ou profissional de QA, fique à vontade para explorar o conteúdo e trocar experiências!</>
 
+📌 Quem Sou Eu
+Olá! 👋 Me chamo Michael Felipe e sou QA Engineer com experiência em testes manuais e automação. Minha missão é garantir a qualidade do software através de estratégias eficazes de testes, automação robusta e uma forte cultura de qualidade.
+
+🚀 Minha Jornada
+Desde o início da minha carreira, venho aprimorando minhas habilidades em testes de software, passando por áreas como:
+
+Testes Manuais 📝 (Caixa Branca, Caixa Preta, Regressão, Exploratório) <br>
+Automação de Testes 🤖 (Cypress, Selenium, Playwright, Appium, Robot Framework)  <br>
+Testes de API 🔗 (Postman, Supertest, CodeceptJS, REST Assured)  <br>
+Testes de Performance ⚡ (JMeter, K6, Wiremock)  <br>
+Integração Contínua (CI/CD) 🔄 (GitHub Actions, Jenkins, GitLab CI)  <br>
+Com uma formação em Banco de Dados pela FATEC, também tenho experiência com SQL e manipulação de dados, o que me ajuda a validar integrações e estruturar testes mais robustos.  <br>
+
+💡 O Que Você Vai Encontrar Neste Portfólio?
+Aqui, compartilho projetos práticos que mostram minha experiência em automação de testes, testes de API, mobile e performance. Meu objetivo é criar um repositório vivo de aprendizado e evolução na área de QA.
+
+🎯 Busco Sempre Evoluir!
+Estou sempre estudando novas tecnologias e aprimorando minhas habilidades. Atualmente, estou aprofundando meus conhecimentos em Appium, ALM Octane e Mobile Center para expandir minha atuação na área de qualidade de software.
+
 
 
 <h1 align="center"> 🛠 Tecnologias & Ferramentas</h1>
