@@ -12,6 +12,8 @@ Desde o início da minha carreira, venho aprimorando minhas habilidades em teste
 
 `Automação de Testes 🤖` (Cypress, Selenium, Playwright, Appium, Robot Framework)  <br>
 
+`Teste Mobile 🤖` (Appium , Maestro) <br>
+
 `Testes de API 🔗` (Postman, Supertest, CodeceptJS, REST Assured)  <br>
 
 `Testes de Performance ⚡` (JMeter, K6, Wiremock)  <br>
@@ -149,7 +151,7 @@ newman run nome_do_arquivo.json -r htmlextra
 </details>
  
 <details>
-<summary>Automação de testes organizados por framework Web e API</summary>
+<summary>Automação de testes organizados por framework Web</summary>
 
   <br>
 
@@ -1043,6 +1045,156 @@ npm test -- --coverage
 <hr>
 </details>
 <br>
+</details>
+
+
+<details>
+<summary>Automação Mobile</summary>
+<br>
+
+<details>
+  <br>
+  <summary>Maestro 📱</summary>
+  
+🔍 O que é o Maestro?
+O Maestro é um framework de automação para testes de interface em aplicativos móveis, desenvolvido para ser mais simples e eficiente do que alternativas como o Appium. Ele permite a criação e execução de testes de forma rápida, utilizando uma sintaxe intuitiva baseada em YAML.
+
+🛠️ Pré-requisitos
+Antes de instalar o Maestro, certifique-se de que possui os seguintes requisitos:
+
+✅ Java Development Kit (JDK) instalado e configurado no PATH do sistema <br>
+✅ Ferramentas de linha de comando para iOS (Xcode CLI) para testes em dispositivos iOS  <br>
+✅ Android SDK instalado e configurado para testes em Android  <br>
+
+
+📌 Vantagens do Maestro sobre o Appium
+<br>
+    🔹 Mais simples e leve: Não depende de um servidor separado como o Appium <br>
+    🔹 Configuração rápida: Exige menos dependências e é fácil de instalar <br>
+    🔹 Sintaxe intuitiva: Testes escritos em YAML, sem necessidade de programação complexa <br>
+    🔹 Execução eficiente: Testes são mais rápidos em comparação com o Appium <br>
+
+🏗️ Estrutura de um Teste com Maestro
+Os testes no Maestro são escritos em arquivos .yaml. Exemplo de um teste básico de login:
+
+```
+# login_test.yaml
+appId: com.meuapp.mobile
+---
+- launchApp
+- tapOn: "Login"
+- insertText:
+    text: "usuario@example.com"
+    into: "Email"
+- insertText:
+    text: "senha123"
+    into: "Senha"
+- tapOn: "Entrar"
+- assertVisible: "Dashboard"
+```
+
+Em meu repositório usei somente comandos windowns mas na documentação do maestro possoui as outras opções.
+
+No windons é interessante instalar o comando do linux pode ajudar 
+
+Instalação do WSL no Windows
+
+1- Abrir o PowerShell como Administrador
+
+* Pressione Win + X → Selecione Windows Terminal (Admin) ou PowerShell (Admin)
+* Execute o comando:
+
+```
+wsl --install
+```
+
+* Isso instala o WSL com a distribuição padrão (Ubuntu).
+
+2- Escolher outra distribuição Linux (Opcional)
+
+* Para ver as distribuições disponíveis:
+
+```
+wsl --list --online
+```
+
+* Para instalar uma distribuição específica (exemplo: Debian):
+
+```
+wsl --install -d Debian
+```
+Verificar a Instalação
+
+Execute:
+
+```
+wsl --list --verbose
+```
+* Se estiver rodando corretamente, aparecerá a distribuição instalada e seu estado.
+
+5- Executar o Linux no Windowns
+
+* Apenas digite wsl no terminal ou abra a distribuição Linux pelo menu Iniciar.
+
+
+com WLS2 ativo e no terminal linux
+Para baixar o maestro digite:
+
+```
+curl -fsSL "https://get.maestro.mobile.dev" | bash
+```
+
+No terminal do Windowns Powershell
+
+```
+adb -a -P 5037 nodaemon server
+```
+No terminal WSL2 Linux rode 
+
+```
+export ADB_SERVER_SOCKET=tcp:<IP>:5037
+```
+Verificar se adb esta conectado com device ira aparecer com comando:
+
+```
+adb devices
+```
+No Windowns possui umas diferenças para executar os tests no Maestro são as seguintes.
+
+
+* DIgite no terminal do Windowns
+
+```
+ipconfig
+```
+* Anote o numero do IP 
+
+Rodar um teste:
+
+```
+maestro --host <IP> test android-flow.yaml
+```
+Rodar testes em sub pastas:
+
+```
+maestro --host <IP> test ./subflows/sub.yaml
+```
+Para conseguir inspecionar os elementos do APP assim que rodar no Android Studio:
+
+```
+maestro --host <IP> studio
+```
+
+Conclusão
+O Maestro é uma excelente alternativa ao Appium para automação de testes móveis, oferecendo um setup mais simples e uma execução mais rápida. Com integração facilitada em CI/CD e suporte a testes em dispositivos físicos e emuladores, é uma ferramenta poderosa para QA Mobile.
+
+Se quiser explorar mais, consulte a [documentação oficial:](https://docs.maestro.dev/)
+
+# 📁 Abaixo está projetos que fiz com Maestro onde coloquei em prática os ensinamentos de teste mobile.<br>
+
+* [Projeto 1º - Maestro](https://github.com/heyMichaelS/maestro)
+
+  </details>
 </details>
 
 <details>
