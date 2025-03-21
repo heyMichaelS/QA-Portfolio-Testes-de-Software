@@ -12,7 +12,7 @@ Desde o início da minha carreira, venho aprimorando minhas habilidades em teste
 
 `Automação de Testes 🤖` (Cypress, Selenium, Playwright, Appium, Robot Framework)  <br>
 
-`Teste Mobile 🤖` (Appium , Maestro) <br>
+`Teste Mobile 🤖` (Appium , Maestro , Expresso - Android) <br>
 
 `Testes de API 🔗` (Postman, Supertest, CodeceptJS, REST Assured)  <br>
 
@@ -1188,13 +1188,223 @@ maestro --host <IP> studio
 Conclusão
 O Maestro é uma excelente alternativa ao Appium para automação de testes móveis, oferecendo um setup mais simples e uma execução mais rápida. Com integração facilitada em CI/CD e suporte a testes em dispositivos físicos e emuladores, é uma ferramenta poderosa para QA Mobile.
 
-Se quiser explorar mais, consulte a [documentação oficial:](https://docs.maestro.dev/)
+Se quiser explorar mais, consulte a [documentação oficial](https://docs.maestro.dev/)
 
 # 📁 Abaixo está projetos que fiz com Maestro onde coloquei em prática os ensinamentos de teste mobile.<br>
 
 * [Projeto 1º - Maestro](https://github.com/heyMichaelS/maestro)
 
+
+
   </details>
+  <details>
+<summary>Espresso</summary>
+<br>
+
+📱 Testes de UI Automatizados com Espresso - Android
+
+Este documento apresenta um guia completo sobre Espresso, um framework de automação de testes para aplicações Android nativas. 
+O Espresso permite validar a interface do usuário (UI) de forma rápida e eficiente, garantindo que a experiência do usuário seja consistente em diferentes cenários.
+
+📌 1. O que é Espresso?
+O Espresso faz parte da AndroidX Test Library e é desenvolvido pelo Google para facilitar a escrita de testes de interface gráfica (UI Tests). 
+Ele permite que os testes interajam diretamente com os componentes do app, como botões, listas e campos de texto.
+
+🚀 Vantagens do Espresso <br>
+✅ Rápido e confiável (sincroniza automaticamente com a UI)  <br>
+✅ Suporte nativo para JUnit e AndroidJUnitRunner  <br>
+✅ Funciona em dispositivos reais e emuladores  <br>
+✅ Suporte a testes de navegação, ações e validações  <br>
+
+📌 2. Configuração do Ambiente  <br>
+🔹 Pré-requisitos  <br>
+✔ Android Studio instalado  <br>
+✔ Dispositivo físico ou emulador configurado  <br>
+✔ Gradle atualizado no projeto  <br>
+
+🔹 Instalação do Espresso <br>
+Adicione as seguintes dependências no build.gradle (Module: app):
+
+```
+dependencies {
+    // Biblioteca principal do Espresso
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    // Extensão para testes com JUnit
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+
+    // Runner para executar testes no Android
+    androidTestImplementation 'androidx.test:runner:1.5.2'
+
+    // Regras de teste para melhor controle do fluxo de execução
+    androidTestImplementation 'androidx.test:rules:1.5.0'
+
+    // Testes em RecyclerView
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.5.1'
+}
+
+```
+
+No build.gradle (Project: app), ative o runner de testes:
+
+```
+android {
+    defaultConfig {
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+}
+
+```
+
+📌 3. Estrutura de um Teste com Espresso <br>
+No Espresso, cada teste segue uma estrutura básica:  <br>
+1️⃣ Localizar o elemento na tela  <br>
+2️⃣ Executar uma ação (ex: clique, digitação)  <br>
+3️⃣ Validar o resultado esperado  <br>
+
+Exemplo de teste para verificar se um botão exibe um texto ao ser clicado:
+
+```
+@RunWith(AndroidJUnit4.class)
+public class MainActivityTest {
+
+    @Rule
+    public ActivityScenarioRule<MainActivity> activityRule =
+            new ActivityScenarioRule<>(MainActivity.class);
+
+    @Test
+    public void testButtonClick() {
+        // Clicar no botão
+        onView(withId(R.id.btn_click)).perform(click());
+
+        // Verificar se o texto apareceu na tela
+        onView(withId(R.id.txt_result)).check(matches(withText("Texto atualizado!")));
+    }
+}
+
+
+```
+
+📌 4. Principais Comandos do Espresso
+🎯 Selecionando elementos
+
+```
+onView(withId(R.id.my_button)) // Seleciona por ID
+onView(withText("Enviar"))      // Seleciona por texto
+onView(withHint("Digite aqui")) // Seleciona por hint (placeholder)
+onView(withContentDescription("Ícone")) // Seleciona por descrição de acessibilidade
+
+
+```
+
+✋ Interações
+
+```
+perform(click());         // Clique
+perform(typeText("QA"));  // Digitar texto
+perform(scrollTo());      // Rolar a tela até o elemento
+perform(longClick());     // Clique longo
+perform(swipeLeft());     // Deslizar para a esquerda
+
+```
+✅ Validações (Assertions)
+
+```
+check(matches(isDisplayed()));  // Verifica se o elemento está visível
+check(matches(withText("OK"))); // Verifica se o texto está correto
+check(matches(isChecked()));    // Verifica se um checkbox está marcado
+check(doesNotExist());          // Verifica se um elemento NÃO existe
+
+```
+
+📌 5. Testando Listas (RecyclerView)
+O Espresso possui suporte nativo para RecyclerView através da biblioteca espresso-contrib.
+
+🔹 Teste de clique em um item da RecyclerView
+
+```
+onView(withId(R.id.recyclerView))
+    .perform(RecyclerViewActions.actionOnItemAtPosition(2, click()));
+
+```
+
+🔹 Verificar se um item está visível na RecyclerView
+
+```
+onView(withRecyclerView(R.id.recyclerView)
+        .atPositionOnView(0, R.id.item_text))
+    .check(matches(withText("Primeiro item")));
+
+```
+
+📌 6. Testes com Activity Navigation
+O Espresso permite testar a navegação entre telas, garantindo que os botões de transição funcionem corretamente.
+
+```
+@Test
+public void testNavigationToSecondActivity() {
+    // Clica no botão que leva para a segunda tela
+    onView(withId(R.id.btn_navigate)).perform(click());
+
+    // Verifica se a segunda tela foi aberta
+    onView(withId(R.id.second_activity_layout)).check(matches(isDisplayed()));
+}
+
+
+
+```
+
+📌 7. Execução dos Testes
+Os testes podem ser executados de diferentes formas:
+
+🔹 Via Android Studio <br>
+1️⃣ Vá até Run > Run ‘Tests in package’   <br>
+2️⃣ Escolha um dispositivo/emulador e execute  <br>
+
+🔹 Via Terminal (Gradle)  <br>
+
+```
+./gradlew connectedAndroidTest
+
+
+```
+
+🔹 Via Comando ADB
+
+```
+adb shell am instrument -w -r -e class com.example.MyTest androidx.test.runner.AndroidJUnitRunner
+
+```
+
+📌 8. Melhores Práticas no Espresso
+<br>
+✔ Use Idling Resources para testes assíncronos (espera automática por carregamentos) <br>
+✔ Evite sleep() e prefira IdlingResource ou waitForView() <br>
+✔ Organize os testes usando Page Object Pattern <br>
+✔ Use Regras de Teste (@Rule) para iniciar atividades automaticamente <br>
+✔ Rodar testes em diferentes dispositivos para evitar dependência de layout específico <br>
+
+📌 9. Exemplo de Estrutura de Pastas para Testes Espresso
+
+```
+📂 app/src/androidTest/java/com/example/myapp
+ ├── 📂 ui_tests
+ │    ├── MainActivityTest.java
+ │    ├── LoginActivityTest.java
+ │    ├── RecyclerViewTest.java
+ ├── 📂 utils
+ │    ├── CustomMatchers.java
+ │    ├── TestUtils.java
+
+```
+
+📌 10. Conclusão
+O Espresso é uma ferramenta poderosa para testes de UI no Android, garantindo qualidade e consistência na interface do usuário. 
+Com uma abordagem bem estruturada e seguindo as melhores práticas, é possível criar testes robustos e confiáveis para qualquer aplicação Android.
+
+Para mais informações veja na [documentação](https://developer.android.com/training/testing/espresso/basics?hl=pt-br)
+
+</details>
 </details>
 
 <details>
