@@ -2307,7 +2307,7 @@ Se precisar de mais exemplos ou integração com CI/CD
 <details>
 <summary>Security-tests(🚧 Em Construção)</summary>
 <br>
-*  (Rpositorio em construção)
+*  OWASP ZAP
 </details>
 
 
