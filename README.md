@@ -29,13 +29,106 @@ Aqui, compartilho projetos práticos que mostram minha experiência em automaç�
 Estou sempre estudando novas tecnologias e aprimorando minhas habilidades. Atualmente, estou aprofundando meus conhecimentos em Appium, ALM Octane e Mobile Center para expandir minha atuação na área de qualidade de software.
 
 
+<hr>
+
+<h1 align="center">  Diferença entre erro, falha e defeito - conceitos </h1>
+
+Se você trabalha com desenvolvimento de software ou engenharia de qualidade, provavelmente já ouviu falar nos termos erro, falha e defeito. Embora esses termos sejam frequentemente usados ​​de forma intercambiável, é importante compreender suas diferenças e como eles se relacionam.
+
+`ERRO` Em termos simples, um erro é uma ação humana que produz um resultado incorreto ou inesperado. Um desenvolvedor pode cometer um erro ao escrever um código incorreto para uma determinada função, um testador pode cometer um erro ao não testar corretamente uma determinada funcionalidade, e um usuário pode cometer um erro ao inserir dados incorretos em um formulário.
+
+`FALHA` Uma falha, por sua vez, é a manifestação externa de um erro. É quando o produto não executa conforme o esperado. Por exemplo, se uma aplicação de pagamento online apresentar um erro de processamento de pagamento, isso pode ser considerado uma falha. As falhas podem ser detectadas pelos usuários ou por testadores durante o processo de teste.
+
+`DEFEITO` Por fim, o defeito é a causa raiz da falha. É o problema subjacente que resulta na falha do produto. Por exemplo, se um código incorreto resultar em um erro de processamento de pagamento, esse código incorreto é considerado o defeito. Os defeitos podem ser introduzidos em qualquer fase do processo de desenvolvimento, como durante a codificação, teste ou até mesmo durante o design.
+
+Entender a diferença entre erro, falha e defeito é fundamental para desenvolver e manter produtos de alta qualidade. Ao identificar e corrigir os defeitos, podemos prevenir as falhas e garantir que o produto final funcione corretamente. Por outro lado, ao identificar e corrigir os erros, podemos prevenir a introdução de defeitos e, portanto, reduzir a probabilidade de falhas.
+
+Em resumo, um erro é a ação humana incorreta, uma falha é a manifestação externa desse erro e um defeito é a causa raiz dessa falha. Ao compreender esses conceitos, podemos melhorar a qualidade do nosso software e garantir a satisfação dos nossos usuários.
+
+
+[fonte](https://www.eduardolam.com.br/2023/04/diferenca-entre-erro-falha-e-defeito.html#:~:text=Em%20resumo%2C%20um%20erro%20%C3%A9,a%20satisfa%C3%A7%C3%A3o%20dos%20nossos%20usu%C3%A1rios.)
+
+<hr>
+
+A diferença entre `Safety` e `Security` é fundamental em áreas como engenharia de software, desenvolvimento de sistemas e gestão de riscos. 
+
+Ambos os conceitos estão relacionados à proteção, mas focam em aspectos diferentes. Aqui está uma explicação clara:
+
+`Safety (Segurança Funcional)`
+
+<br>
+
+`Definição:` Safety refere-se à proteção contra falhas ou acidentes que podem causar danos às pessoas, ao meio ambiente ou ao próprio sistema. Está relacionado à `confiabilidade` e à `integridade funcional` de um sistema.
+
+`Foco:` Prevenir riscos que surgem de erros não intencionais, como falhas de hardware, bugs de software ou condições operacionais inadequadas.
+
+`Exemplos:`
+
+* * Um sistema de freios em um carro que deve funcionar corretamente para evitar acidentes.
+
+* * Um software médico que controla doses de medicamentos e deve evitar overdoses.
+
+* * Controle de temperatura em uma usina nuclear para evitar superaquecimento.
+
+`Objetivo:` Garantir que o sistema opere de maneira segura, mesmo em condições adversas ou de falha.
+
+<hr>
+
+`Security (Segurança da Informação)`
+
+<br>
+
+`Definição:` Security refere-se à proteção contra `ataques intencionais` ou acessos não autorizados que possam comprometer a confidencialidade, integridade ou disponibilidade de dados e sistemas.
+
+`Foco:` Prevenir riscos que surgem de `ações maliciosas`, como hackers, vírus, roubo de dados ou espionagem.
+
+`Exemplos:`
+
+Criptografia de dados para proteger informações sensíveis.
+
+Autenticação de usuários para evitar acessos não autorizados.
+
+Firewalls e sistemas de detecção de intrusões para proteger redes.
+
+`Objetivo:` Garantir que os dados e sistemas estejam protegidos contra ameaças externas e internas.
+
+<hr>
+
+`Diferença Principal`
+
+| Aspecto | Safety | Security |
+|----------|----------|----------|
+| Foco | Prevenir danos causados por falhas não intencionais. | Prevenir danos causados por ataques intencionais.|
+| Origem do Risco | Erros, falhas de hardware/software, condições operacionais. | Ataques cibernéticos, acessos não autorizados, malware. |
+| Exemplo Prático | Um avião não deve cair devido a falhas no sistema de controle. | Um sistema bancário não deve ser invadido por hackers. |
+| Objetivo | Garantir que o sistema funcione de maneira segura e confiável. | Garantir que os dados e sistemas estejam protegidos contra ameaças. |
+
+
+`Relação entre Safety e Security`
+
+Em sistemas complexos, como carros autônomos ou usinas de energia, `Safety` e `Security` estão interligados. Por exemplo:
+
+* Um ataque de `Security` (como um hacker assumindo o controle de um carro autônomo) pode levar a uma falha de `Safety` (causando um acidente).
+
+* Portanto, é essencial considerar ambos os aspectos no design e na implementação de sistemas críticos.
+
+<hr>
+
+Resumindo:
+
+`Safety` = Proteção contra falhas não intencionais.
+
+`Security` = Proteção contra ameaças intencionais.
+
+Ambos são essenciais para garantir a confiabilidade e a segurança de sistemas e produtos!
+
 
 <h1 align="center"> 🛠 Tecnologias & Ferramentas</h1>
 
 <p align="center">
   <a href="https://go-skill-icons.vercel.app/">
     <img
-      src="https://go-skill-icons.vercel.app/api/icons?i=cypress,playwright,selenium,postman,javascript,java,git,gherkin,githubactions,github,gitlab,sonarqube"
+      src="https://go-skill-icons.vercel.app/api/icons?i=cypress,playwright,selenium,postman,javascript,java,git,gherkin,githubactions,github,gitlab,sonarqube,jenkins"
     />
   </a>
 </p>
@@ -43,11 +136,74 @@ Estou sempre estudando novas tecnologias e aprimorando minhas habilidades. Atual
 ## Repositórios
 
 <details>
-<summary>Manual-tests(🚧 Em Construção)</summary>
+<summary>Manual-tests</summary>
+  
+<br>
+  
+##  Testes manuais (documentação, casos de teste, checklist, relatórios)
+
+Testes no Portfólio de QA
+Este repositório contém exemplos práticos de diferentes tipos de testes de software, demonstrando habilidades em garantia de qualidade (QA). Abaixo estão os exemplos incluídos:
+
+`1. Teste de Caixa Branca (White Box Testing) `
+
 <br>
 
+Descrição: Testes que avaliam a estrutura interna do código, como fluxo de execução, condições e loops.
 
-*  Testes manuais (documentação, casos de teste, checklist, relatórios)
+Exemplo:
+
+Análise de cobertura de código em uma função de cálculo de imposto.
+
+Verificação de condições de borda em um algoritmo de ordenação.
+
+Tecnologias: Python, Pytest, Coverage.py.
+
+`2. Teste de Caixa Preta (Black Box Testing) `
+
+<br>
+
+Descrição: Testes que avaliam a funcionalidade do software sem conhecimento da implementação interna.
+
+Exemplo:
+
+Testes de funcionalidade em uma API RESTful (verificação de status codes, respostas JSON).
+
+Validação de campos de um formulário de cadastro.
+
+Tecnologias: Postman, Selenium, Cypress.
+
+`3. Teste de Regressão (Regression Testing) `
+
+<br>
+
+Descrição: Testes para garantir que novas alterações não introduziram bugs em funcionalidades existentes.
+
+Exemplo:
+
+Execução de um conjunto de testes automatizados após a implementação de uma nova feature.
+
+Verificação de funcionalidades críticas após atualizações de bibliotecas.
+
+Tecnologias: Jenkins, GitLab CI, TestNG.
+
+`4. Teste Exploratório (Exploratory Testing)`
+
+<br>
+
+Descrição: Testes não estruturados, onde o testador explora o software para identificar bugs ou comportamentos inesperados.
+
+Exemplo:
+
+Exploração de um novo módulo de e-commerce para identificar possíveis falhas de usabilidade.
+
+Testes manuais em um aplicativo móvel para verificar fluxos de navegação.
+
+Tecnologias: Ferramentas de captura de tela, relatórios manuais.
+
+
+<hr>
+
 </details>
 
 <details>
