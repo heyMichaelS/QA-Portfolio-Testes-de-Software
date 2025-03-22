@@ -2305,12 +2305,170 @@ Se precisar de mais exemplos ou integração com CI/CD
 </details>
 
 <details>
-<summary>Security-tests(🚧 Em Construção)</summary>
+<summary>Security-tests</summary>
 <br>
-*  OWASP ZAP
+
+<details>
+<summary>OWASP ZAP</summary>
+  
+<br> 
+
+O OWASP ZAP (Zed Attack Proxy) é uma das principais ferramentas open-source para testes de segurança em aplicações web. Ele é desenvolvido pelo projeto OWASP (Open Web Application Security Project) e permite identificar vulnerabilidades como SQL Injection, Cross-Site Scripting (XSS), CSRF, falhas de autenticação, entre outras.
+
+<hr>
+
+📌 1. O que é o OWASP ZAP?
+O OWASP ZAP (Zed Attack Proxy) é uma ferramenta de Security Testing que permite encontrar vulnerabilidades em aplicações web através de scanners automatizados e testes manuais. Ele funciona como um proxy entre o navegador e o servidor, interceptando e analisando as requisições HTTP.
+
+🎯 Principais Funcionalidades <br>
+✅ Scanner Passivo e Ativo – Identifica vulnerabilidades automaticamente <br>
+✅ Interceptação de Requisições – Permite modificar requisições antes de serem enviadas <br>
+✅ Fuzzing – Teste de inputs com diferentes tipos de dados maliciosos <br>
+✅ Automação com Scripts – Suporte a scripts em Python, JavaScript e Zest <br>
+✅ Integração com CI/CD – Pode ser integrado ao pipeline DevSecOps <br>
+
+
+📌 2. Instalação do OWASP ZAP  <br>
+🔹 Via Download (Windows, Mac, Linux)  <br>
+1️⃣ Acesse: https://www.zaproxy.org/download/  <br>
+2️⃣ Baixe a versão para o seu sistema operacional  <br>
+3️⃣ Instale e execute o OWASP ZAP  <br>
+
+🔹 Via Docker
+Caso prefira rodar via Docker, use:
+
+```
+docker pull owasp/zap2docker-stable
+docker run -u zap -p 8080:8080 -i owasp/zap2docker-stable zap.sh -daemon -port 8080
+
+```
+
+📌 3. Configuração do Proxy no Navegador
+Para capturar requisições no OWASP ZAP, é necessário configurar o navegador para utilizar o proxy da ferramenta:
+
+1️⃣ Abra o ZAP e verifique a porta do proxy (por padrão, 8080) <br>
+2️⃣ No navegador, acesse Configurações > Rede > Proxy  <br>
+3️⃣ Defina o proxy como:  <br>
+
+Endereço: localhost
+Porta: 8080  <br>
+4️⃣ Instale o Certificado CA do ZAP para interceptar tráfego HTTPS  <br>
+
+📌 4. Tipos de Testes no OWASP ZAP
+🔹 1. Scanner Passivo  <br>
+Analisa as requisições e respostas sem interferir no funcionamento da aplicação.  <br>
+
+Passo a passo: <br>
+1️⃣ Abra o OWASP ZAP  <br>
+2️⃣ Configure o navegador para usar o proxy  <br>
+3️⃣ Navegue na aplicação normalmente  <br>
+4️⃣ Veja os alertas no painel Alerts  <br>
+ 
+🔹 2. Scanner Ativo  <br>
+Executa ataques simulados para verificar vulnerabilidades exploráveis.  <br>
+
+Passo a passo:  <br>
+1️⃣ Insira a URL da aplicação no campo Target  <br>
+2️⃣ Clique com o botão direito e selecione Attack > Active Scan  <br>
+3️⃣ O ZAP testará automaticamente possíveis vulnerabilidades  <br>
+
+🔹 3. Teste Manual com Fuzzing  <br>
+Permite enviar múltiplas variações de entrada para encontrar falhas.  <br>
+
+Exemplo de Teste Fuzzing em um Formulário:  <br>
+1️⃣ Intercepte uma requisição de login  <br>
+2️⃣ Clique com o botão direito e selecione Attack > Fuzz  <br>
+3️⃣ Escolha um payload (ex: lista de senhas fracas)  <br>
+4️⃣ Execute o teste e verifique as respostas do servidor  <br>
+
+📌 5. Automatizando Testes com OWASP ZAP e Python
+O OWASP ZAP permite integração via API REST para automação. Aqui está um exemplo de script Python para rodar um scan ativo:
+
+```
+import requests
+
+ZAP_URL = "http://localhost:8080"
+TARGET_URL = "http://example.com"
+
+# Iniciar o scanner ativo
+scan_response = requests.get(f"{ZAP_URL}/JSON/ascan/action/scan/?url={TARGET_URL}")
+scan_id = scan_response.json()["scan"]
+
+# Monitorar progresso do scan
+while True:
+    status = requests.get(f"{ZAP_URL}/JSON/ascan/view/status/?scanId={scan_id}").json()["status"]
+    print(f"Progresso do scan: {status}%")
+    if status == "100":
+        break
+
+print("Scan concluído!")
+
+```
+
+📌 6. Relatórios de Vulnerabilidades
+O OWASP ZAP permite gerar relatórios em diversos formatos (HTML, XML, JSON). Para gerar um relatório:
+
+1️⃣ No menu, vá até Reports > Generate Report <br>
+2️⃣ Escolha o formato desejado <br>
+3️⃣ Salve o relatório para análise <br>
+
+Caso queira gerar via API, use:
+
+```
+curl "http://localhost:8080/OTHER/core/other/htmlreport/"
+
+```
+
+📌 7. Integração com CI/CD (Jenkins, GitHub Actions, GitLab CI)
+Exemplo de Pipeline no GitHub Actions
+
+```
+name: OWASP ZAP Scan
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  zap_scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar OWASP ZAP
+        run: docker pull owasp/zap2docker-stable
+
+      - name: Rodar Scan Ativo
+        run: docker run -t owasp/zap2docker-stable zap.sh -daemon -quickurl "http://example.com" -quickprogress
+
+```
+
+📌 8. Melhores Práticas em Testes de Segurança <br>
+✔ Teste aplicações em um ambiente seguro para evitar impacto em produção  <br>
+✔ Combine OWASP ZAP com outras ferramentas como Burp Suite, Nikto e Nmap  <br>
+✔ Automatize testes de segurança para rodar frequentemente no CI/CD  <br>
+✔ Foque nos principais riscos do OWASP Top 10  <br>
+✔ Analise os relatórios e repasse as vulnerabilidades para correção  <br>
+
+📌 9. Estrutura do Repositório
+
+```
+📂 security-tests  
+ ├── 📂 scripts  
+ │    ├── zap_scan.py       # Script de automação do OWASP ZAP  
+ │    ├── fuzz_test.py      # Teste de fuzzing automatizado  
+ ├── 📂 reports  
+ │    ├── zap_report.html   # Relatório gerado pelo OWASP ZAP  
+ ├── README.md              # Documentação  
+
+```
+
+📌 10. Conclusão
+O OWASP ZAP é uma ferramenta essencial para garantir a segurança de aplicações web, permitindo identificar vulnerabilidades de forma manual ou automatizada. Com a automação via API e integração em CI/CD, ele se torna um grande aliado no DevSecOps.
+
 </details>
 
 
+</details>
 
 <div align="center">
 
