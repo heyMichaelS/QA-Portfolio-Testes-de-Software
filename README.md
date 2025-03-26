@@ -2192,6 +2192,8 @@ Caso não tenha, baixe o JDK em:([https://jdk.java.net/](https://www.oracle.com/
 
 📌 2. Instalando o WireMock <br>
 
+<br>
+
 🔹 Opção 1: Usando o Standalone JAR <br>
 
 Baixe o WireMock standalone JAR: <br>
@@ -2227,7 +2229,7 @@ dependencies {
 
 📌 3. Criando um Mock de API
 Agora, vamos configurar um endpoint falso que retorna um JSON.
-
+<br>
 🔹 Criando um Stub de Requisição GET
 
 ```
@@ -2253,6 +2255,7 @@ curl -X POST http://localhost:8080/__admin/mappings \
 * O status da resposta será 200 (OK).
 
 📌 4. Testando o Mock com REST-Assured
+<br>
 Podemos testar essa API mockada com REST-Assured:
 ```
 import static io.restassured.RestAssured.*;
@@ -2318,6 +2321,9 @@ O OWASP ZAP (Zed Attack Proxy) é uma das principais ferramentas open-source par
 <hr>
 
 📌 1. O que é o OWASP ZAP?
+
+<br>
+
 O OWASP ZAP (Zed Attack Proxy) é uma ferramenta de Security Testing que permite encontrar vulnerabilidades em aplicações web através de scanners automatizados e testes manuais. Ele funciona como um proxy entre o navegador e o servidor, interceptando e analisando as requisições HTTP.
 
 🎯 Principais Funcionalidades <br>
@@ -2328,7 +2334,8 @@ O OWASP ZAP (Zed Attack Proxy) é uma ferramenta de Security Testing que permite
 ✅ Integração com CI/CD – Pode ser integrado ao pipeline DevSecOps <br>
 
 
-📌 2. Instalação do OWASP ZAP  <br>
+📌 2. Instalação do OWASP ZAP  
+<br>
 🔹 Via Download (Windows, Mac, Linux)  <br>
 1️⃣ Acesse: https://www.zaproxy.org/download/  <br>
 2️⃣ Baixe a versão para o seu sistema operacional  <br>
@@ -2342,6 +2349,7 @@ docker pull owasp/zap2docker-stable
 docker run -u zap -p 8080:8080 -i owasp/zap2docker-stable zap.sh -daemon -port 8080
 
 ```
+<br>
 
 📌 3. Configuração do Proxy no Navegador
 Para capturar requisições no OWASP ZAP, é necessário configurar o navegador para utilizar o proxy da ferramenta:
@@ -2354,8 +2362,8 @@ Endereço: localhost
 Porta: 8080  <br>
 4️⃣ Instale o Certificado CA do ZAP para interceptar tráfego HTTPS  <br>
 
-📌 4. Tipos de Testes no OWASP ZAP
-🔹 1. Scanner Passivo  <br>
+📌 4. Tipos de Testes no OWASP ZAP <br>
+🔹 1. Scanner Passivo 
 Analisa as requisições e respostas sem interferir no funcionamento da aplicação.  <br>
 
 Passo a passo: <br>
