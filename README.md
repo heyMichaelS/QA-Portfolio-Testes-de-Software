@@ -832,6 +832,7 @@ Agora, após executar os testes, o relatório é gerado na raiz do projeto.
 # 📁 Abaixo está projetos que fiz com Robot Framework onde coloquei em prática os ensinamentos de teste nesse framework.<br>
 
 * [Projeto 1º - Robot Framework](https://github.com/heyMichaelS/robot-framework-api)
+* [Projeto 2° - Robot Framework](https://github.com/heyMichaelS/Automacao_Web_Robot_Framework)
 
 <hr>
 </details>
